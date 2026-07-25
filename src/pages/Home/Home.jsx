@@ -7,7 +7,7 @@ import { usePageMeta } from '../../lib/usePageMeta.js'
 function Home() {
   usePageMeta({
     title: 'Craivo — High-Conversion Websites for Small Brands',
-    description: 'Craivo designs and builds conversion-focused websites for cafes, retail, grocery, and lifestyle brands — one person handling both the design and the code, end to end.',
+    description: 'Craivo is an independent web design and development studio — one person designing, building, and shipping fast, conversion-focused websites for ambitious brands, without the agency overhead.',
     path: '/',
   })
 
