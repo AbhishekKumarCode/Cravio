@@ -631,6 +631,22 @@
       transform: translateX(-50%) scaleX(1);
     }
 
+    @media (max-width: 768px) {.page-home .filter-wrapper {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        scrollbar-width: none;
+      }.page-home .filter-wrapper::-webkit-scrollbar {
+        display: none;
+      }.page-home .filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        scroll-snap-align: start;
+      }
+    }
+
     /* ==========================================================================
        SELECTED WORK - ROW LIST LAYOUT
        Replaces the previous CSS-grid "bento" card layout. The client saw this
@@ -2893,6 +2909,14 @@
 
     @media (max-width: 600px) {.page-home .form-row {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {.page-home .premium-form {
+        padding: 20px;
+        gap: 16px;
+      }.page-home .form-input {
+        width: 100%;
       }
     }.page-home .form-group {
       display: flex;

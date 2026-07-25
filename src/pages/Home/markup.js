@@ -1360,7 +1360,7 @@ export const homeMarkup = `
             </form>
             <div class="form-status-msg" id="form-status-msg" style="display: none; margin-top: 15px; padding: 12px; border-radius: 8px; font-size: 13.5px; font-weight: 500; font-family: var(--font-body); text-align: center;"></div>
 
-            <p class="contact-email-link" style="margin-top: 20px; width: 100%; text-align: center;">Prefer direct email? <a href="mailto:hello@calibre.co" style="color: var(--accent); text-decoration: underline !important;">hello@calibre.co</a></p>
+            <p class="contact-email-link" style="margin-top: 20px; width: 100%; text-align: center;">Prefer direct email? <a href="mailto:abhishek.kumar.work8668@gmail.com" style="color: var(--accent); text-decoration: underline !important;">abhishek.kumar.work8668@gmail.com</a></p>
           </div>
         </div>
       </div>
