@@ -1094,8 +1094,14 @@
     @media (max-width: 600px) {.page-home .floating-cta-btn {
         bottom: 20px;
         right: 20px;
-        padding: 11px 18px;
-        font-size: 10px;
+        padding: 0;
+        width: 48px;
+        height: 48px;
+        justify-content: center;
+      }.page-home .floating-cta-btn .fcta-label {
+        display: none;
+      }.page-home .floating-cta-btn .fcta-arrow {
+        font-size: 18px;
       }
     }.page-home .services-grid-container {
       display: grid;

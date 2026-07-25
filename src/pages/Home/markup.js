@@ -1472,6 +1472,6 @@ export const homeMarkup = `
 
   <!-- FLOATING CTA BUTTON -->
   <a href="#contact" id="floating-cta" class="floating-cta-btn" aria-label="Start a Project">
-    Start a Project <span class="fcta-arrow">→</span>
+    <span class="fcta-label">Start a Project</span> <span class="fcta-arrow">→</span>
   </a>
 `;
