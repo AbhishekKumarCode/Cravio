@@ -269,44 +269,58 @@ export const homeMarkup = `
             <!-- Step 1 -->
             <div class="process-step">
               <div class="process-circle">01</div>
-              <h3 class="process-step-title">Discovery</h3>
-              <p class="process-step-desc">A 30-min strategy call to align on your business growth goals.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Discovery</h3>
+                <p class="process-step-desc">A 30-min strategy call to align on your business growth goals.</p>
+              </div>
             </div>
             <!-- Step 2 -->
             <div class="process-step">
               <div class="process-circle">02</div>
-              <h3 class="process-step-title">Strategy</h3>
-              <p class="process-step-desc">Mapping out content structures and conversion funnels.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Strategy</h3>
+                <p class="process-step-desc">Mapping out content structures and conversion funnels.</p>
+              </div>
             </div>
             <!-- Step 3 -->
             <div class="process-step">
               <div class="process-circle">03</div>
-              <h3 class="process-step-title">UI/UX Design</h3>
-              <p class="process-step-desc">Figma layouts tailored for premium brand authority.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">UI/UX Design</h3>
+                <p class="process-step-desc">Figma layouts tailored for premium brand authority.</p>
+              </div>
             </div>
             <!-- Step 4 -->
             <div class="process-step">
               <div class="process-circle">04</div>
-              <h3 class="process-step-title">Development</h3>
-              <p class="process-step-desc">Building clean, high-performance vanilla responsive code.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Development</h3>
+                <p class="process-step-desc">Building clean, high-performance vanilla responsive code.</p>
+              </div>
             </div>
             <!-- Step 5 -->
             <div class="process-step">
               <div class="process-circle">05</div>
-              <h3 class="process-step-title">Testing</h3>
-              <p class="process-step-desc">Thorough audits for speed, SEO, and viewport bugs.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Testing</h3>
+                <p class="process-step-desc">Thorough audits for speed, SEO, and viewport bugs.</p>
+              </div>
             </div>
             <!-- Step 6 -->
             <div class="process-step">
               <div class="process-circle">06</div>
-              <h3 class="process-step-title">Launch</h3>
-              <p class="process-step-desc">Deploying to cloud hosting with zero active downtime.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Launch</h3>
+                <p class="process-step-desc">Deploying to cloud hosting with zero active downtime.</p>
+              </div>
             </div>
             <!-- Step 7 -->
             <div class="process-step">
               <div class="process-circle">07</div>
-              <h3 class="process-step-title">Support</h3>
-              <p class="process-step-desc">Ongoing performance monitoring to scale conversions.</p>
+              <div class="process-step-text">
+                <h3 class="process-step-title">Support</h3>
+                <p class="process-step-desc">Ongoing performance monitoring to scale conversions.</p>
+              </div>
             </div>
           </div>
         </div>
