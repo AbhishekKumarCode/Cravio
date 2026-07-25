@@ -940,10 +940,10 @@ export const homeMarkup = `
             <span class="section-eyebrow">ABOUT CRAIVO</span>
             <h2 class="about-headline">An engineering-led digital studio focused on revenue.</h2>
             <p class="about-body">
-              We design and build bespoke digital experiences that serve a single purpose: driving active customer
-              growth. By bridging luxury aesthetic identity with high-performance code, we create custom websites that
-              build instant market credibility. From high-end catalog sites to complex e-commerce integrations, we work
-              closely with ambitious brands to turn visual systems into conversion machines.
+              Craivo is an independent web design and development studio built around a single purpose: driving active
+              customer growth. By bridging luxury aesthetic identity with high-performance code, we create custom
+              websites that build instant market credibility. From small business web design to complex e-commerce
+              integrations, we work closely with ambitious brands to turn visual systems into conversion machines.
             </p>
           </div>
 
@@ -1377,7 +1377,7 @@ export const homeMarkup = `
           CRAIVO <span>© 2026</span>
         </div>
         <div class="footer-center">
-          PROUDLY BUILT IN DELHI, INDIA
+          WEB DESIGN &amp; DEVELOPMENT STUDIO — PROUDLY BUILT IN DELHI, INDIA
         </div>
         <div class="footer-right">
           <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="footer-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
