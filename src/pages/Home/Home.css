@@ -1210,6 +1210,30 @@
     }.page-home .service-tile:hover .service-tile-explore {
       opacity: 1;
       transform: translateY(0);
+    }.page-home .service-tile-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+    }.page-home .pricing-desc {
+      margin-bottom: 20px;
+    }.page-home .markets-tech-copy {
+      margin-top: 15px;
+      max-width: 480px;
+    }.page-home .section-divider {
+      border-top: var(--stitch-style);
+      margin-top: 60px;
+      padding-top: 60px;
+    }.page-home .mb-30 {
+      margin-bottom: 30px;
+    }.page-home .case-study-item {
+      border-left: 2px dashed var(--border-color);
+      padding-left: 20px;
+    }.page-home .dim-symbol {
+      opacity: 0.1;
+    }.page-home .case-quote {
+      font-style: italic;
+      color: var(--text-secondary);
     }
 
     /* ==========================================================================

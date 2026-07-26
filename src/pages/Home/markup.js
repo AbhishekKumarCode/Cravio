@@ -605,7 +605,7 @@ export const homeMarkup = `
         <div class="services-grid-container reveal-element">
           <!-- Tile 1 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -622,7 +622,7 @@ export const homeMarkup = `
 
           <!-- Tile 2 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16" />
@@ -638,7 +638,7 @@ export const homeMarkup = `
 
           <!-- Tile 3 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -654,7 +654,7 @@ export const homeMarkup = `
 
           <!-- Tile 4 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
@@ -670,7 +670,7 @@ export const homeMarkup = `
 
           <!-- Tile 5 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -686,7 +686,7 @@ export const homeMarkup = `
 
           <!-- Tile 6 -->
           <div class="service-tile">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="service-tile-top">
               <div class="service-icon-wrapper">
                 <svg viewBox="0 0 24 24">
                   <path d="M6 3h12l4 6-10 12L2 9z" />
@@ -785,7 +785,7 @@ export const homeMarkup = `
                 aria-label="View full pricing breakdown for all plans">₹8,999–₹15,000</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc" style="margin-bottom: 20px;">A single page done right — for businesses that
+            <p class="service-tile-desc pricing-desc">A single page done right — for businesses that
               need a clean, working presence online fast.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
@@ -824,7 +824,7 @@ export const homeMarkup = `
                 aria-label="View full pricing breakdown for all plans">₹15,000–₹35,000</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc" style="margin-bottom: 20px;">For growing brands that need a proper multi-page
+            <p class="service-tile-desc pricing-desc">For growing brands that need a proper multi-page
               site built around their actual business, not a template.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
@@ -869,7 +869,7 @@ export const homeMarkup = `
                 aria-label="View full pricing breakdown for all plans">₹35,000–₹80,000+</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc" style="margin-bottom: 20px;">Full-stack builds with real backend logic and AI
+            <p class="service-tile-desc pricing-desc">Full-stack builds with real backend logic and AI
               features baked in, for businesses ready to scale past a brochure site.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
@@ -978,8 +978,7 @@ export const homeMarkup = `
         </div>
 
         <!-- Founder Story Sub-Section -->
-        <div class="founder-layout reveal-element"
-          style="border-top: var(--stitch-style); margin-top: 60px; padding-top: 60px;">
+        <div class="founder-layout reveal-element section-divider">
           <div class="founder-image-box" style="aspect-ratio: unset; padding: 20px; align-items: stretch;">
             <div class="founder-spec-grid">
               <div class="founder-spec-card">
@@ -1031,8 +1030,8 @@ export const homeMarkup = `
         </div>
 
         <!-- Why Choose Us & Benefits Grid -->
-        <div style="border-top: var(--stitch-style); margin-top: 60px; padding-top: 60px;">
-          <div class="section-header-block reveal-element" style="margin-bottom: 30px;">
+        <div class="section-divider">
+          <div class="section-header-block reveal-element mb-30">
             <span class="section-eyebrow">STUDIO BENEFITS</span>
             <h2 class="section-title">Why Leading Brands Work With Us</h2>
           </div>
@@ -1097,11 +1096,10 @@ export const homeMarkup = `
         </div>
 
         <div class="testimonials-list">
-          <div class="testimonial-item reveal-element"
-            style="border-left: 2px dashed var(--border-color); padding-left: 20px;">
-            <span class="testimonial-quote-symbol" style="opacity: 0.1;">01</span>
+          <div class="testimonial-item reveal-element case-study-item">
+            <span class="testimonial-quote-symbol dim-symbol">01</span>
             <div class="testimonial-quote-body">
-              <p class="testimonial-quote-text" style="font-style: italic; color: var(--text-secondary);">
+              <p class="testimonial-quote-text case-quote">
                 Built for a sports retail concept: a full product catalogue with instant, zero-lag visual filtering
                 across category, size and price &mdash; no page reloads, no lag on large item sets.
               </p>
@@ -1115,11 +1113,10 @@ export const homeMarkup = `
             </div>
           </div>
 
-          <div class="testimonial-item reveal-element"
-            style="border-left: 2px dashed var(--border-color); padding-left: 20px;">
-            <span class="testimonial-quote-symbol" style="opacity: 0.1;">02</span>
+          <div class="testimonial-item reveal-element case-study-item">
+            <span class="testimonial-quote-symbol dim-symbol">02</span>
             <div class="testimonial-quote-body">
-              <p class="testimonial-quote-text" style="font-style: italic; color: var(--text-secondary);">
+              <p class="testimonial-quote-text case-quote">
                 Built for a specialty cafe concept: a frictionless table booking flow designed to cut the steps
                 between landing on the site and a confirmed reservation.
               </p>
@@ -1133,11 +1130,10 @@ export const homeMarkup = `
             </div>
           </div>
 
-          <div class="testimonial-item reveal-element"
-            style="border-left: 2px dashed var(--border-color); padding-left: 20px;">
-            <span class="testimonial-quote-symbol" style="opacity: 0.1;">03</span>
+          <div class="testimonial-item reveal-element case-study-item">
+            <span class="testimonial-quote-symbol dim-symbol">03</span>
             <div class="testimonial-quote-body">
-              <p class="testimonial-quote-text" style="font-style: italic; color: var(--text-secondary);">
+              <p class="testimonial-quote-text case-quote">
                 Built for a local grocery concept: direct WhatsApp-based order dispatch, so orders placed on the
                 site land straight in a chat thread the owner already checks all day.
               </p>
@@ -1161,7 +1157,7 @@ export const homeMarkup = `
         <div class="reveal-element">
           <span class="section-eyebrow">MARKETS</span>
           <h2 class="section-title">Industries We Serve</h2>
-          <p class="service-tile-desc" style="margin-top: 15px; max-width: 480px;">
+          <p class="service-tile-desc markets-tech-copy">
             We build specialized customer funnels and conversion flows for businesses in distinct market segments:
           </p>
           <div class="industries-pills">
@@ -1178,7 +1174,7 @@ export const homeMarkup = `
         <div class="reveal-element">
           <span class="section-eyebrow">STACK</span>
           <h2 class="section-title">Technologies We Trust</h2>
-          <p class="service-tile-desc" style="margin-top: 15px; max-width: 480px;">
+          <p class="service-tile-desc markets-tech-copy">
             We build fast, secure, customizable systems using standard, developer-approved architectures:
           </p>
           <div class="tech-badges-grid">
