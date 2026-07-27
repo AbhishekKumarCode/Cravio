@@ -108,8 +108,9 @@ export const homeMarkup = `
         <div class="hero-bottom-row">
           <div class="hero-bottom-left">
             <p class="hero-desc-copy">
-              We design and engineer bespoke, high-converting digital platforms for modern brands. Combining luxury
-              visual strategy with lightning-fast code, we turn your online presence into a client generation engine.
+              Craivo is a web design and development agency that engineers bespoke, high-converting digital platforms
+              for modern brands. Combining luxury visual strategy with lightning-fast code, we turn your online
+              presence into a client generation engine.
             </p>
             <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
               <a href="#contact" class="hero-know-more">Book a Discovery Call <span>→</span></a>
@@ -954,7 +955,7 @@ export const homeMarkup = `
             <span class="section-eyebrow">ABOUT CRAIVO</span>
             <h2 class="about-headline">An engineering-led digital studio focused on revenue.</h2>
             <p class="about-body">
-              Craivo is an independent web design and development studio built around a single purpose: driving active
+              Craivo is a web design and development agency built around a single purpose: driving active
               customer growth. By bridging luxury aesthetic identity with high-performance code, we create custom
               websites that build instant market credibility. From small business web design to complex e-commerce
               integrations, we work closely with ambitious brands to turn visual systems into conversion machines.
@@ -1387,7 +1388,7 @@ export const homeMarkup = `
           CRAIVO <span>© 2026</span>
         </div>
         <div class="footer-center">
-          WEB DESIGN &amp; DEVELOPMENT STUDIO — PROUDLY BUILT IN DELHI, INDIA
+          WEB DESIGN &amp; DEVELOPMENT AGENCY — PROUDLY BUILT IN DELHI, INDIA
         </div>
         <div class="footer-right">
           <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="footer-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
