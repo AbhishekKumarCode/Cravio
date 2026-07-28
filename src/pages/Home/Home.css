@@ -1450,14 +1450,14 @@
       align-items: flex-start;
       gap: 20px;
     }.page-home .thank-you-page {
-      min-height: 100vh;
+      min-height: 70vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 16px;
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       background-color: var(--bg);
       position: relative;
       overflow: hidden;
@@ -1468,10 +1468,6 @@
       margin: 0;
       position: relative;
       z-index: 2;
-    }.page-home .thank-you-page .nav-logo {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 20px;
     }.page-home .thank-you-page .section-eyebrow {
       position: relative;
       z-index: 2;
