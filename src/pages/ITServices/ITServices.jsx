@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Home/Home.css'
+import './ITServices.css'
 import { usePageMeta } from '../../lib/usePageMeta.js'
 import { submitContactForm } from '../../lib/submitContactForm.js'
 import SiteHeader from '../../components/SiteHeader.jsx'
@@ -12,6 +13,7 @@ const ICONS = {
   cloud: <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />,
   bolt: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
   layers: <><path d="M12 2 2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></>,
+  check: <polyline points="20 6 9 17 4 12"></polyline>,
 }
 
 const CAPABILITY_GROUPS = [
@@ -21,23 +23,65 @@ const CAPABILITY_GROUPS = [
   { icon: 'bolt', title: 'Modern Stack', desc: 'AWS, Node.js, WhatsApp API integration, and SSL/web security, layered onto whatever you already run.' },
 ]
 
-const SAAS_SOLUTIONS = [
-  { title: 'HRMS', desc: 'Hiring, payroll, attendance, and performance tracking in one system.' },
-  { title: 'CRM', desc: 'Track leads, follow-ups, and customer relationships end to end.' },
-  { title: 'Helpdesk', desc: 'Ticketing and support workflows for internal or customer-facing teams.' },
-  { title: 'Education ERP', desc: 'Admissions, fees, attendance, and academics for schools and institutes.' },
-  { title: 'Loan Management System', desc: 'Loan origination, EMI tracking, and repayment management.' },
+const INFRA_TIERS = [
+  {
+    tier: 'Essential Support',
+    price: '₹9,999–₹19,999/mo',
+    desc: 'For small offices that need reliable day-to-day IT without hiring in-house.',
+    features: ['Business-Hours Helpdesk', 'Patch & Update Management', 'Basic Network Monitoring', 'Up to 10 Users'],
+    cta: 'Get Started',
+  },
+  {
+    tier: 'Business Infrastructure',
+    price: '₹25,000–₹50,000/mo',
+    desc: 'Hybrid cloud + on-prem management for growing teams running real workloads.',
+    features: ['Priority Helpdesk, Extended Hours', 'Database Admin — MySQL / MongoDB / Oracle', 'Backup & Disaster Recovery', 'Up to 50 Users'],
+    cta: 'Book a Call',
+    featured: true,
+  },
+  {
+    tier: 'Enterprise & Compliance',
+    price: 'Custom Quote',
+    desc: '24/7 coverage and compliance-grade infrastructure for larger, regulated operations.',
+    features: ['24/7 NOC Monitoring', 'SAP HANA / Oracle DB Administration', 'Security Audits & Hardening', 'Dedicated Engineer'],
+    cta: 'Request Quote',
+  },
+]
+
+const SAAS_PRICING = [
+  { title: 'HRMS', price: 'From ₹99 / employee / mo', desc: 'Payroll, attendance, and performance tracking — scales with headcount.' },
+  { title: 'CRM', price: 'From ₹599 / user / mo', desc: 'Leads, pipelines, and follow-ups for sales teams.' },
+  { title: 'Helpdesk', price: 'From ₹1,999 / mo', desc: 'Flat pricing for small-to-mid support teams.' },
+  { title: 'Education ERP', price: 'From ₹35,000 / year', desc: 'Priced per institution, scales with student count.' },
+  { title: 'Loan Management System', price: 'Custom Quote', desc: 'Compliance-heavy — scoped per lender and loan book size.' },
+]
+
+const INTEREST_OPTIONS = [
+  { value: 'it-infra', label: 'IT Infrastructure & Support' },
+  { value: 'hrms', label: 'HRMS' },
+  { value: 'crm', label: 'CRM' },
+  { value: 'helpdesk', label: 'Helpdesk' },
+  { value: 'education-erp', label: 'Education ERP' },
+  { value: 'loan-management', label: 'Loan Management System' },
+  { value: 'other', label: 'Something Else' },
+]
+
+const TEAM_SIZE_OPTIONS = [
+  { value: '1-10', label: '1–10 People' },
+  { value: '11-50', label: '11–50 People' },
+  { value: '51-200', label: '51–200 People' },
+  { value: '200+', label: '200+ People' },
 ]
 
 function ITServices() {
   usePageMeta({
     title: 'IT & SaaS Solutions — Craivo',
-    description: 'Enterprise IT infrastructure, cloud, and ready-made SaaS solutions — ERP, HRMS, CRM, Helpdesk, and more.',
+    description: 'Enterprise IT infrastructure, managed support, and ready-made SaaS solutions — ERP, HRMS, CRM, Helpdesk, and more, with transparent pricing.',
     path: '/it-services',
   })
 
   const navigate = useNavigate()
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ company: '', email: '', interest: '', teamSize: '', message: '' })
   const [status, setStatus] = useState('idle')
 
   function handleChange(e) {
@@ -47,13 +91,16 @@ function ITServices() {
   function handleSubmit(e) {
     e.preventDefault()
     setStatus('sending')
+    const interestLabel = INTEREST_OPTIONS.find((o) => o.value === form.interest)?.label || form.interest
+    const teamSizeLabel = TEAM_SIZE_OPTIONS.find((o) => o.value === form.teamSize)?.label || form.teamSize
+
     submitContactForm({
-      name: form.name,
+      name: form.company,
       email: form.email,
-      project: 'it-services',
-      projectLabel: 'IT / SaaS Services',
-      budget: 'not-specified',
-      budgetLabel: 'Not specified',
+      project: form.interest,
+      projectLabel: interestLabel,
+      budget: form.teamSize,
+      budgetLabel: teamSizeLabel,
       message: form.message,
     }).then((ok) => {
       if (ok) {
@@ -65,7 +112,7 @@ function ITServices() {
   }
 
   return (
-    <div className="page-home">
+    <div className="page-home page-itservices">
       <SiteHeader />
 
       <section className="hero" style={{ minHeight: 'auto', padding: '80px 0 60px' }}>
@@ -82,7 +129,7 @@ function ITServices() {
                 division handles the infrastructure and the software your operations run on.
               </p>
               <div style={{ display: 'flex', gap: 15, alignItems: 'center', flexWrap: 'wrap' }}>
-                <a href="#contact" className="hero-know-more">Get a Quote <span>→</span></a>
+                <a href="#pricing" className="hero-know-more">See Pricing <span>→</span></a>
                 <a href="#capabilities" className="hero-secondary-btn">See Capabilities</a>
               </div>
             </div>
@@ -120,7 +167,7 @@ function ITServices() {
             <h2 className="section-title">Or skip the build — deploy a ready-made platform.</h2>
           </div>
           <div className="services-grid-container">
-            {SAAS_SOLUTIONS.map((sol, i) => (
+            {SAAS_PRICING.map((sol, i) => (
               <div className="service-tile" key={sol.title}>
                 <div className="service-tile-top">
                   <div className="service-icon-wrapper">
@@ -131,6 +178,52 @@ function ITServices() {
                 <h3 className="service-tile-name">{sol.title}</h3>
                 <p className="service-tile-desc">{sol.desc}</p>
                 <a href="#contact" className="service-tile-explore">Get a Quote →</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="section-spacing">
+        <div className="container">
+          <div className="section-header-block">
+            <span className="section-eyebrow">PRICING</span>
+            <h2 className="section-title">Managed IT & Infrastructure Plans</h2>
+          </div>
+          <div className="pricing-grid">
+            {INFRA_TIERS.map((t) => (
+              <div className={`pricing-card${t.featured ? ' featured' : ''}`} key={t.tier}>
+                <div className="pricing-header">
+                  <span className="pricing-tier">{t.tier}</span>
+                  <h3 className="pricing-price">{t.price}</h3>
+                </div>
+                <p className="service-tile-desc pricing-desc">{t.desc}</p>
+                <ul className="pricing-features">
+                  {t.features.map((f) => (
+                    <li className="pricing-feature-item" key={f}>
+                      <svg viewBox="0 0 24 24">{ICONS.check}</svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#contact" className="pricing-btn">{t.cta}</a>
+              </div>
+            ))}
+          </div>
+
+          <div className="section-header-block" style={{ marginTop: 80 }}>
+            <span className="section-eyebrow">SAAS PRODUCT PRICING</span>
+            <h2 className="section-title">Simple pricing per platform.</h2>
+          </div>
+          <div className="pricing-grid saas-pricing-grid">
+            {SAAS_PRICING.map((sol) => (
+              <div className="pricing-card compact" key={sol.title}>
+                <div className="pricing-header">
+                  <span className="pricing-tier">{sol.title}</span>
+                  <h3 className="pricing-price">{sol.price}</h3>
+                </div>
+                <p className="service-tile-desc pricing-desc">{sol.desc}</p>
+                <a href="#contact" className="pricing-btn">Get a Quote</a>
               </div>
             ))}
           </div>
@@ -148,7 +241,7 @@ function ITServices() {
               <span className="section-eyebrow">GET A QUOTE</span>
               <h2 className="giant-contact-headline">Tell us what you need <em>running</em>.</h2>
               <p className="contact-proposal-text">
-                Share a few details and we'll get back to you with next steps — no obligation.
+                Share a few details and we'll get back to you with a scoped quote — no obligation.
               </p>
             </div>
 
@@ -156,17 +249,37 @@ function ITServices() {
               <form className="premium-form" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="its-name">Your Name</label>
-                    <input type="text" id="its-name" name="name" className="form-input" placeholder="e.g. Sneha Arora" required value={form.name} onChange={handleChange} />
+                    <label htmlFor="its-company">Company Name</label>
+                    <input type="text" id="its-company" name="company" className="form-input" placeholder="e.g. Aira Textiles Pvt Ltd" required value={form.company} onChange={handleChange} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="its-email">Work Email</label>
                     <input type="email" id="its-email" name="email" className="form-input" placeholder="e.g. it@company.com" required value={form.email} onChange={handleChange} />
                   </div>
                 </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="its-interest">Interested In</label>
+                    <select id="its-interest" name="interest" className="form-input" required value={form.interest} onChange={handleChange}>
+                      <option value="" disabled>Select an option</option>
+                      {INTEREST_OPTIONS.map((o) => (
+                        <option value={o.value} key={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="its-team-size">Team Size</label>
+                    <select id="its-team-size" name="teamSize" className="form-input" required value={form.teamSize} onChange={handleChange}>
+                      <option value="" disabled>Select team size</option>
+                      {TEAM_SIZE_OPTIONS.map((o) => (
+                        <option value={o.value} key={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
                 <div className="form-group">
-                  <label htmlFor="its-message">What do you need?</label>
-                  <textarea id="its-message" name="message" className="form-input" rows="4" placeholder="ERP, cloud migration, HRMS, something else..." required style={{ resize: 'vertical' }} value={form.message} onChange={handleChange}></textarea>
+                  <label htmlFor="its-message">Tell us more</label>
+                  <textarea id="its-message" name="message" className="form-input" rows="4" placeholder="Current setup, pain points, timeline..." required style={{ resize: 'vertical' }} value={form.message} onChange={handleChange}></textarea>
                 </div>
                 <button type="submit" className="form-submit-btn" disabled={status === 'sending'}>
                   {status === 'sending' ? 'Sending…' : <>Send Request <span>→</span></>}
