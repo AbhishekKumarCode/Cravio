@@ -269,6 +269,20 @@ function ITServices() {
         </div>
       </section>
 
+      <section className="its-dark-cta">
+        <div className="container its-dark-cta-inner">
+          <span className="section-eyebrow">READY TO MODERNIZE?</span>
+          <h2 className="its-dark-cta-title">
+            Stop firefighting IT. <em>Start scaling</em> with infrastructure that just works.
+          </h2>
+          <p className="its-dark-cta-desc">
+            One call to scope your setup — servers, cloud, databases, or a ready-made SaaS platform — and get a
+            straight answer on cost and timeline.
+          </p>
+          <a href="#contact" className="its-dark-cta-btn">Talk to Us <span>→</span></a>
+        </div>
+      </section>
+
       <section id="pricing" className="section-spacing">
         <div className="container">
           <div className="section-header-block">
