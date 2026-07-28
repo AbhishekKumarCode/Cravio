@@ -20,4 +20,12 @@
     <loc>https://craivo.craivo.workers.dev/verdant</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://craivo.craivo.workers.dev/privacy</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://craivo.craivo.workers.dev/terms</loc>
+    <priority>0.3</priority>
+  </url>
 </urlset>

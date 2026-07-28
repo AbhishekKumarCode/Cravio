@@ -1455,15 +1455,80 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
       text-align: center;
       padding: 40px 20px;
       background-color: var(--bg);
+      position: relative;
+      overflow: hidden;
     }.page-home .thank-you-page h1 {
       font-family: var(--font-display);
       font-size: clamp(40px, 6vw, 72px);
       color: var(--text-primary);
       margin: 0;
+      position: relative;
+      z-index: 2;
+    }.page-home .thank-you-page .nav-logo {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 20px;
+    }.page-home .thank-you-page .section-eyebrow {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 0;
+    }.page-home .thank-you-desc {
+      max-width: 460px;
+      position: relative;
+      z-index: 2;
+    }.page-home .thank-you-steps {
+      list-style: none;
+      margin: 10px 0 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 2;
+    }.page-home .thank-you-steps li {
+      counter-increment: thank-you-step;
+    }.page-home .thank-you-steps li::before {
+      content: counter(thank-you-step) '. ';
+      color: var(--accent);
+      font-weight: 700;
+    }.page-home .thank-you-steps {
+      counter-reset: thank-you-step;
+    }.page-home .thank-you-page .btn-contact-huge {
+      position: relative;
+      z-index: 2;
+      margin-top: 10px;
+    }.page-home .legal-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }.page-home .legal-page h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      color: var(--text-primary);
+      margin: 30px 0 4px;
+    }.page-home .legal-updated {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }.page-home .legal-page h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--text-primary);
+      margin: 30px 0 8px;
+    }.page-home .legal-page p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }.page-home .legal-page .btn-contact-huge {
+      margin-top: 30px;
     }.page-home .btn-contact-huge {
       display: inline-flex;
       align-items: center;

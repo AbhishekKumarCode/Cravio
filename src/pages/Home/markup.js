@@ -1394,6 +1394,8 @@ export const homeMarkup = `
           <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="footer-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
           <a href="https://www.linkedin.com/in/abhishek8668" class="footer-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/AbhishekKumarCode" class="footer-social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/privacy" class="footer-social-link">Privacy</a>
+          <a href="/terms" class="footer-social-link">Terms</a>
         </div>
       </div>
       <!-- CRAIVO watermark -->
