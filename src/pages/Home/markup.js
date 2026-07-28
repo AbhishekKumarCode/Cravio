@@ -19,7 +19,7 @@ export const homeMarkup = `
        behavior.js adds .header-scrolled once you scroll past the hero. -->
   <header class="header">
     <div class="container nav-container">
-      <a href="#" class="nav-logo" aria-label="Craivo Homepage">CRAIVO</a>
+      <a href="#" class="nav-logo" aria-label="Craivo Homepage">Craivo<sup>®</sup></a>
 
 
       <div class="nav-links-wrapper">
@@ -28,8 +28,7 @@ export const homeMarkup = `
           <li class="nav-item"><a href="#services" class="nav-link" aria-label="View Services">Services</a></li>
           <li class="nav-item"><a href="#pricing" class="nav-link" aria-label="View Pricing Plans">Pricing</a></li>
           <li class="nav-item"><a href="#about" class="nav-link" aria-label="Read About Us">About Us</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link" aria-label="Start Your Project"
-              style="color: var(--accent); font-weight: 700;">Start Your Project</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-cta-glass" aria-label="Start Your Project">Start Your Project</a></li>
         </ul>
 
         <!-- Hamburger menu toggle -->

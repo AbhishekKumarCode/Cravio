@@ -261,12 +261,16 @@
       align-items: center;
       height: 90px;
     }.page-home .nav-logo {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 26px;
+      font-style: italic;
+      letter-spacing: -0.01em;
       color: var(--text-primary);
+    }.page-home .nav-logo sup {
+      font-size: 11px;
+      font-style: normal;
+      margin-left: 2px;
     }.page-home .nav-links-wrapper {
       display: flex;
       align-items: center;
@@ -303,6 +307,56 @@
       color: var(--text-primary);
     }.page-home .nav-link:hover::after {
       width: 100%;
+    }
+
+    /* Nav CTA — liquid-glass pill while the header floats transparently over
+       the hero video, switching to a solid accent pill once scrolled (a
+       translucent white chip would lose contrast against the site's own
+       light backgrounds once the header goes solid). */
+    .page-home .nav-cta-glass {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 999px;
+      overflow: hidden;
+      transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .page-home .nav-cta-glass:hover {
+      transform: scale(1.03);
+    }
+
+    .page-home .header:not(.header-scrolled) .nav-cta-glass {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .page-home .header:not(.header-scrolled) .nav-cta-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.2px;
+      background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 35%,
+        rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.15) 75%,
+        rgba(255, 255, 255, 0.5) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .page-home .header.header-scrolled .nav-cta-glass {
+      color: #FFFFFF;
+      background-color: var(--accent);
     }
 
     /* Circular Hamburger Toggle */.page-home .mobile-menu-btn {
