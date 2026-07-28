@@ -21,6 +21,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://craivo.craivo.workers.dev/it-services</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://craivo.craivo.workers.dev/privacy</loc>
     <priority>0.3</priority>
   </url>

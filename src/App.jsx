@@ -8,6 +8,7 @@ import Verdant from './pages/Verdant/Verdant.jsx'
 import Privacy from './pages/Privacy/Privacy.jsx'
 import Terms from './pages/Terms/Terms.jsx'
 import NotFound from './pages/NotFound/NotFound.jsx'
+import ITServices from './pages/ITServices/ITServices.jsx'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/verdant" element={<Verdant />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/it-services" element={<ITServices />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
