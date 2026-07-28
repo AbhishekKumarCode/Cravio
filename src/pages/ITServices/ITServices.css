@@ -103,67 +103,6 @@
   flex-shrink: 0;
 }
 
-/* Dark CTA banner — deliberately forced dark regardless of the site's
-   light/dark toggle, for a punchy break in contrast before pricing. */
-.page-home.page-itservices .its-dark-cta {
-  background-color: #0B0E14;
-  padding: 100px 0;
-  text-align: center;
-}
-
-.page-home.page-itservices .its-dark-cta-inner {
-  max-width: 680px;
-}
-
-.page-home.page-itservices .its-dark-cta .section-eyebrow {
-  color: var(--accent);
-}
-
-.page-home.page-itservices .its-dark-cta-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1.25;
-  font-weight: 400;
-  color: #F4F5F9;
-  margin: 16px 0 20px;
-}
-
-.page-home.page-itservices .its-dark-cta-title em {
-  font-style: italic;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.page-home.page-itservices .its-dark-cta-desc {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #9198A8;
-  margin-bottom: 32px;
-}
-
-.page-home.page-itservices .its-dark-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #fff;
-  padding: 16px 32px;
-  border-radius: 999px;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-.page-home.page-itservices .its-dark-cta-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
 .page-home.page-itservices .tech-badge-grid {
   display: flex;
   flex-wrap: wrap;

@@ -269,17 +269,16 @@ function ITServices() {
         </div>
       </section>
 
-      <section className="its-dark-cta">
-        <div className="container its-dark-cta-inner">
-          <span className="section-eyebrow">READY TO MODERNIZE?</span>
-          <h2 className="its-dark-cta-title">
-            Stop firefighting IT. <em>Start scaling</em> with infrastructure that just works.
-          </h2>
-          <p className="its-dark-cta-desc">
-            One call to scope your setup — servers, cloud, databases, or a ready-made SaaS platform — and get a
-            straight answer on cost and timeline.
+      <section className="section-dark-interlude">
+        <div className="container">
+          <p className="dark-interlude-statement">
+            Built on the same infrastructure trusted by <em>Vercel, Stripe &amp; Linear</em> — so your site stays
+            fast, secure, and easy to maintain for years.
           </p>
-          <a href="#contact" className="its-dark-cta-btn">Talk to Us <span>→</span></a>
+          <p className="dark-interlude-buyer-copy">
+            No lock-in, no bloat, no proprietary page builder holding your content hostage. Just clean,
+            production-grade code that your own team can read, extend, and hand off to any developer later.
+          </p>
         </div>
       </section>
 
