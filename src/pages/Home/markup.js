@@ -1394,10 +1394,12 @@ export const homeMarkup = `
           <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="footer-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
           <a href="https://www.linkedin.com/in/abhishek8668" class="footer-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/AbhishekKumarCode" class="footer-social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="/it-services" class="footer-social-link">IT & SaaS Solutions</a>
-          <a href="/privacy" class="footer-social-link">Privacy</a>
-          <a href="/terms" class="footer-social-link">Terms</a>
         </div>
+      </div>
+      <div class="container footer-legal-links">
+        <a href="/it-services">IT & SaaS Solutions</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
       </div>
       <!-- CRAIVO watermark -->
       <div class="footer-backdrop-logo">CRAIVO</div>

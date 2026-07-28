@@ -1648,6 +1648,23 @@
     }.page-home .footer-social-link:hover {
       opacity: 1;
       color: var(--accent);
+    }.page-home .footer-legal-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }.page-home .footer-legal-links a {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }.page-home .footer-legal-links a:hover {
+      opacity: 1;
+      color: var(--accent);
     }
 
     /* MOBILE MENU OVERLAY */.page-home .mobile-menu-overlay {
