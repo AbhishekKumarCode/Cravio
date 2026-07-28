@@ -17,7 +17,7 @@ export const homeMarkup = `
   <!-- STICKY HEADER — kept outside the rounded canvas frame, alongside the hero,
        so both can go true edge-to-edge. Starts transparent/glass over the video;
        behavior.js adds .header-scrolled once you scroll past the hero. -->
-  <header class="header">
+  <header class="header header-hero-overlay">
     <div class="container nav-container">
       <a href="#" class="nav-logo" aria-label="Craivo Homepage">Craivo<sup>®</sup></a>
 
