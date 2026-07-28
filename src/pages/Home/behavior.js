@@ -292,6 +292,18 @@ export function initHomeBehavior() {
     handleHeroParallax();
   }
 
+  // 6c. HEADER SCROLL STATE — header starts transparent/glass over the fullscreen
+  // hero video, then picks up its normal solid/blurred look once you scroll past it.
+  const headerEl = document.querySelector('.header');
+  const handleHeaderScrollState = () => {
+    if (!headerEl) return;
+    headerEl.classList.toggle('header-scrolled', window.scrollY > 60);
+  };
+  if (headerEl) {
+    window.addEventListener('scroll', handleHeaderScrollState, { passive: true });
+    handleHeaderScrollState();
+  }
+
   // ==========================================================================
   // 9. PLAY INTRO SHOWCASE MODAL LOGIC
   // ==========================================================================
@@ -562,6 +574,7 @@ export function initHomeBehavior() {
     window.removeEventListener('resize', handleResize);
     window.removeEventListener('scroll', handleScrollProgress);
     window.removeEventListener('scroll', onScrollForParallax);
+    window.removeEventListener('scroll', handleHeaderScrollState);
     window.removeEventListener('pageshow', handlePageshow);
     if (handlePricingModalKeydown) {
       document.removeEventListener('keydown', handlePricingModalKeydown);

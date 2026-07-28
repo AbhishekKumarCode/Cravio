@@ -14,6 +14,118 @@ export const homeMarkup = `
     <div class="floating-shape dot-2"></div>
   </div>
 
+  <!-- STICKY HEADER — kept outside the rounded canvas frame, alongside the hero,
+       so both can go true edge-to-edge. Starts transparent/glass over the video;
+       behavior.js adds .header-scrolled once you scroll past the hero. -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#" class="nav-logo" aria-label="Craivo Homepage">CRAIVO</a>
+
+
+      <div class="nav-links-wrapper">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#work" class="nav-link active" aria-label="View Selected Work">Selected Work</a></li>
+          <li class="nav-item"><a href="#services" class="nav-link" aria-label="View Services">Services</a></li>
+          <li class="nav-item"><a href="#pricing" class="nav-link" aria-label="View Pricing Plans">Pricing</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link" aria-label="Read About Us">About Us</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link" aria-label="Start Your Project"
+              style="color: var(--accent); font-weight: 700;">Start Your Project</a></li>
+        </ul>
+
+        <!-- Hamburger menu toggle -->
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <nav class="mobile-nav">
+      <ul class="mobile-menu-list">
+        <li><a href="#work" class="mobile-menu-item">Selected Work</a></li>
+        <li><a href="#services" class="mobile-menu-item">Services</a></li>
+        <li><a href="#pricing" class="mobile-menu-item">Pricing</a></li>
+        <li><a href="#about" class="mobile-menu-item">About Us</a></li>
+        <li><a href="#contact" class="mobile-menu-item" style="color: var(--accent);">Start Your Project</a></li>
+      </ul>
+      <a href="#contact" class="btn-primary mobile-menu-cta" style="margin-top: 20px;">Book a Free Consultation</a>
+      <div class="mobile-menu-socials">
+        <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="mobile-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
+        <a href="https://www.linkedin.com/in/abhishek8668" class="mobile-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/AbhishekKumarCode" class="mobile-social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO SECTION — true fullscreen, edge-to-edge, outside the rounded canvas frame -->
+  <section class="hero hero-has-video">
+    <!-- Floating Radial Glowing Blob (kept as a fallback layer under the video —
+         if the video fails to load, the hero still looks intentional, not blank) -->
+    <div class="glowing-blob-container">
+      <div class="glowing-blob"></div>
+    </div>
+
+    <!-- Fullscreen looping background video -->
+    <video class="hero-bg-video" id="hero-bg-video" autoplay loop muted playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-scrim"></div>
+
+    <div class="container hero-container-box">
+      <!-- Giant Centered Title (Inspired brand-specific copy) -->
+      <div class="hero-center-titles">
+        <h1 class="hero-headline-large animate-fade-rise">Websites That Build</h1>
+        <h2 class="hero-headline-gradient animate-fade-rise-delay">Customers, Not Compliments.</h2>
+      </div>
+
+      <!-- Bottom Details & Avatar Button -->
+      <div class="hero-bottom-row">
+        <div class="hero-bottom-left">
+          <p class="hero-desc-copy animate-fade-rise-delay">
+            Craivo is a web design and development agency that engineers bespoke, high-converting digital platforms
+            for modern brands. Combining luxury visual strategy with lightning-fast code, we turn your online
+            presence into a client generation engine.
+          </p>
+          <div class="animate-fade-rise-delay-2" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="hero-know-more">Book a Discovery Call <span>→</span></a>
+            <a href="#work" class="hero-secondary-btn">Explore Work</a>
+          </div>
+          <div class="urgency-badge">
+            <span
+              style="width: 6px; height: 6px; background-color: var(--accent); border-radius: 50%; display: inline-block; animation: livePulse 1.6s infinite alternate;"></span>
+            Now accepting only 2 new projects this month (1 spot remaining)
+          </div>
+          <div class="hero-trust-row" role="list" aria-label="Studio credentials">
+            <span class="hero-trust-badge" role="listitem">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
+              6+ Projects Shipped
+            </span>
+            <span class="hero-trust-badge" role="listitem">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
+              Avg. 7-Day Turnaround
+            </span>
+            <span class="hero-trust-badge" role="listitem">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
+              100% Client-Owned Code
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-bottom-right">
+          <button class="studio-badge-btn" id="play-intro-btn">
+            <div class="monogram-badge">
+              <span>CS</span>
+            </div>
+            <span>Studio Profile</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Outer Rounded Canvas Frame -->
   <div class="canvas-frame">
 
@@ -45,116 +157,6 @@ export const homeMarkup = `
     <div class="right-sidebar">
       <div class="sidebar-follow">Follow Us — <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" target="_blank" rel="noopener noreferrer">Up.</a> / <a href="https://www.linkedin.com/in/abhishek8668" target="_blank" rel="noopener noreferrer">Lk.</a> / <a href="https://github.com/AbhishekKumarCode" target="_blank" rel="noopener noreferrer">Gh.</a></div>
     </div>
-
-    <!-- STICKY HEADER -->
-    <header class="header">
-      <div class="container nav-container">
-        <a href="#" class="nav-logo" aria-label="Craivo Homepage">CRAIVO</a>
-
-
-        <div class="nav-links-wrapper">
-          <ul class="nav-menu">
-            <li class="nav-item"><a href="#work" class="nav-link active" aria-label="View Selected Work">Selected Work</a></li>
-            <li class="nav-item"><a href="#services" class="nav-link" aria-label="View Services">Services</a></li>
-            <li class="nav-item"><a href="#pricing" class="nav-link" aria-label="View Pricing Plans">Pricing</a></li>
-            <li class="nav-item"><a href="#about" class="nav-link" aria-label="Read About Us">About Us</a></li>
-            <li class="nav-item"><a href="#contact" class="nav-link" aria-label="Start Your Project"
-                style="color: var(--accent); font-weight: 700;">Start Your Project</a></li>
-          </ul>
-
-          <!-- Hamburger menu toggle -->
-          <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open navigation menu">
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- MOBILE MENU OVERLAY -->
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-      <nav class="mobile-nav">
-        <ul class="mobile-menu-list">
-          <li><a href="#work" class="mobile-menu-item">Selected Work</a></li>
-          <li><a href="#services" class="mobile-menu-item">Services</a></li>
-          <li><a href="#pricing" class="mobile-menu-item">Pricing</a></li>
-          <li><a href="#about" class="mobile-menu-item">About Us</a></li>
-          <li><a href="#contact" class="mobile-menu-item" style="color: var(--accent);">Start Your Project</a></li>
-        </ul>
-        <a href="#contact" class="btn-primary mobile-menu-cta" style="margin-top: 20px;">Book a Free Consultation</a>
-        <div class="mobile-menu-socials">
-          <a href="https://www.upwork.com/freelancers/~0118882544be59d04b?mp_source=share" class="mobile-social-link" target="_blank" rel="noopener noreferrer">Upwork</a>
-          <a href="https://www.linkedin.com/in/abhishek8668" class="mobile-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/AbhishekKumarCode" class="mobile-social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-      </nav>
-    </div>
-
-    <!-- HERO SECTION -->
-    <section class="hero hero-has-video">
-      <!-- Floating Radial Glowing Blob (kept as a fallback layer under the video —
-           if the video fails to load, the hero still looks intentional, not blank) -->
-      <div class="glowing-blob-container">
-        <div class="glowing-blob"></div>
-      </div>
-
-      <!-- Fullscreen looping background video -->
-      <video class="hero-bg-video" id="hero-bg-video" autoplay loop muted playsinline>
-        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
-      </video>
-      <div class="hero-video-scrim"></div>
-
-      <div class="container hero-container-box">
-        <!-- Giant Centered Title (Inspired brand-specific copy) -->
-        <div class="hero-center-titles">
-          <h1 class="hero-headline-large animate-fade-rise">Websites That Build</h1>
-          <h2 class="hero-headline-gradient animate-fade-rise-delay">Customers, Not Compliments.</h2>
-        </div>
-
-        <!-- Bottom Details & Avatar Button -->
-        <div class="hero-bottom-row">
-          <div class="hero-bottom-left">
-            <p class="hero-desc-copy animate-fade-rise-delay">
-              Craivo is a web design and development agency that engineers bespoke, high-converting digital platforms
-              for modern brands. Combining luxury visual strategy with lightning-fast code, we turn your online
-              presence into a client generation engine.
-            </p>
-            <div class="animate-fade-rise-delay-2" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-              <a href="#contact" class="hero-know-more">Book a Discovery Call <span>→</span></a>
-              <a href="#work" class="hero-secondary-btn">Explore Work</a>
-            </div>
-            <div class="urgency-badge">
-              <span
-                style="width: 6px; height: 6px; background-color: var(--accent); border-radius: 50%; display: inline-block; animation: livePulse 1.6s infinite alternate;"></span>
-              Now accepting only 2 new projects this month (1 spot remaining)
-            </div>
-            <div class="hero-trust-row" role="list" aria-label="Studio credentials">
-              <span class="hero-trust-badge" role="listitem">
-                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
-                6+ Projects Shipped
-              </span>
-              <span class="hero-trust-badge" role="listitem">
-                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
-                Avg. 7-Day Turnaround
-              </span>
-              <span class="hero-trust-badge" role="listitem">
-                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
-                100% Client-Owned Code
-              </span>
-            </div>
-          </div>
-
-          <div class="hero-bottom-right">
-            <button class="studio-badge-btn" id="play-intro-btn">
-              <div class="monogram-badge">
-                <span>CS</span>
-              </div>
-              <span>Studio Profile</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- WHAT WE DO SECTION -->
     <section id="services-intro" class="section-spacing">
