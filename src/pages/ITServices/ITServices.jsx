@@ -73,6 +73,39 @@ const TEAM_SIZE_OPTIONS = [
   { value: '200+', label: '200+ People' },
 ]
 
+const NAV_LINKS = [
+  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#technologies', label: 'Technologies' },
+  { href: '#solutions', label: 'SaaS Solutions' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#contact', label: 'Get a Quote', accent: true },
+]
+
+const TECH_STACK = [
+  'Linux — Red Hat / Ubuntu / Fedora',
+  'VMware',
+  'AWS',
+  'Microsoft Azure',
+  'Google Cloud',
+  'Oracle Cloud',
+  'Open Source — OwnCloud / NextCloud / Seafile',
+  'Microsoft 365',
+  'Oracle DB / SAP HANA',
+  'MySQL / MongoDB',
+  'Node.js',
+  'WhatsApp API',
+  'SSL & Web Security',
+  'AI Agents & Automation',
+]
+
+const PROCESS_STEPS = [
+  { title: 'Discovery & Audit', desc: 'We assess your current infrastructure, pain points, and goals.' },
+  { title: 'Scoped Proposal', desc: 'A clear plan and fixed quote before any work begins.' },
+  { title: 'Migration & Setup', desc: 'Implementation, migration, or SaaS deployment with zero data loss.' },
+  { title: 'Testing & Handover', desc: 'Security, performance, and access checks before go-live.' },
+  { title: 'Ongoing Support', desc: 'Monitoring, helpdesk, and maintenance after launch.' },
+]
+
 function ITServices() {
   usePageMeta({
     title: 'IT & SaaS Solutions — Craivo',
@@ -113,7 +146,7 @@ function ITServices() {
 
   return (
     <div className="page-home page-itservices">
-      <SiteHeader />
+      <SiteHeader links={NAV_LINKS} />
 
       <section className="hero" style={{ minHeight: 'auto', padding: '90px 0 70px' }}>
         <div className="glowing-blob-container"><div className="glowing-blob"></div></div>
@@ -173,6 +206,20 @@ function ITServices() {
         </div>
       </section>
 
+      <section id="technologies" className="section-spacing">
+        <div className="container">
+          <div className="section-header-block">
+            <span className="section-eyebrow">TECHNOLOGIES</span>
+            <h2 className="section-title">Built on what your team already trusts.</h2>
+          </div>
+          <div className="tech-badge-grid">
+            {TECH_STACK.map((tech) => (
+              <span className="tech-badge" key={tech}>{tech}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="solutions" className="section-spacing">
         <div className="container">
           <div className="section-header-block">
@@ -193,6 +240,31 @@ function ITServices() {
                 <a href="#contact" className="service-tile-explore">Get a Quote →</a>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="process" className="section-spacing">
+        <div className="container">
+          <div className="section-header-block">
+            <span className="section-eyebrow">HOW WE WORK</span>
+            <h2 className="section-title">From audit to ongoing support.</h2>
+          </div>
+          <div className="process-flow-container">
+            <div className="process-connecting-line">
+              <div className="process-line-progress" style={{ width: '100%' }}></div>
+            </div>
+            <div className="process-steps">
+              {PROCESS_STEPS.map((step, i) => (
+                <div className="process-step active" key={step.title}>
+                  <div className="process-circle">0{i + 1}</div>
+                  <div className="process-step-text">
+                    <h3 className="process-step-title">{step.title}</h3>
+                    <p className="process-step-desc">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
