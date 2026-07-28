@@ -504,25 +504,16 @@ export function initHomeBehavior() {
 
       submitContactForm({ name, email, project, projectLabel, budget, budgetLabel, message }).then((dbOk) => {
         if (dbOk) {
-          btn.innerHTML = 'Request Received! ✓';
-          btn.style.backgroundColor = '#2ECC71';
-          btn.style.borderColor = '#2ECC71';
-          btn.style.color = '#fff';
-
-          formStatusMsg.style.display = 'block';
-          formStatusMsg.style.backgroundColor = 'rgba(46, 204, 113, 0.1)';
-          formStatusMsg.style.color = '#2ECC71';
-          formStatusMsg.style.border = '1px solid rgba(46, 204, 113, 0.2)';
-          formStatusMsg.innerHTML = 'Thank you! Your request has been received. We will get back to you within 24 hours.';
-
           contactForm.reset();
-        } else {
-          formStatusMsg.style.display = 'block';
-          formStatusMsg.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
-          formStatusMsg.style.color = '#E74C3C';
-          formStatusMsg.style.border = '1px solid rgba(231, 76, 60, 0.2)';
-          formStatusMsg.innerHTML = 'Something went wrong sending your request. Please try again or email us directly.';
+          window.location.href = '/thank-you';
+          return;
         }
+
+        formStatusMsg.style.display = 'block';
+        formStatusMsg.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
+        formStatusMsg.style.color = '#E74C3C';
+        formStatusMsg.style.border = '1px solid rgba(231, 76, 60, 0.2)';
+        formStatusMsg.innerHTML = 'Something went wrong sending your request. Please try again or email us directly.';
 
         setTimeout(() => {
           btn.innerHTML = originalText;
