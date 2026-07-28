@@ -21,15 +21,15 @@ export const homeMarkup = `
     <div class="container nav-container">
       <a href="#" class="nav-logo" aria-label="Craivo Homepage">Craivo<sup>®</sup></a>
 
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#work" class="nav-link active" aria-label="View Selected Work">Selected Work</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link" aria-label="View Services">Services</a></li>
+        <li class="nav-item"><a href="#pricing" class="nav-link" aria-label="View Pricing Plans">Pricing</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link" aria-label="Read About Us">About Us</a></li>
+      </ul>
 
-      <div class="nav-links-wrapper">
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="#work" class="nav-link active" aria-label="View Selected Work">Selected Work</a></li>
-          <li class="nav-item"><a href="#services" class="nav-link" aria-label="View Services">Services</a></li>
-          <li class="nav-item"><a href="#pricing" class="nav-link" aria-label="View Pricing Plans">Pricing</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link" aria-label="Read About Us">About Us</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-cta-glass" aria-label="Start Your Project">Start Your Project</a></li>
-        </ul>
+      <div class="nav-right">
+        <a href="#contact" class="nav-cta-glass" aria-label="Start Your Project">Start Your Project</a>
 
         <!-- Hamburger menu toggle -->
         <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open navigation menu">

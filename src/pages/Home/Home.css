@@ -256,8 +256,8 @@
       background-color: var(--accent);
       transition: width 0.1s ease-out;
     }.page-home .nav-container {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       height: 90px;
     }.page-home .nav-logo {
@@ -267,18 +267,21 @@
       font-style: italic;
       letter-spacing: -0.01em;
       color: var(--text-primary);
+      justify-self: start;
     }.page-home .nav-logo sup {
       font-size: 11px;
       font-style: normal;
       margin-left: 2px;
-    }.page-home .nav-links-wrapper {
+    }.page-home .nav-right {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 20px;
+      justify-self: end;
     }.page-home .nav-menu {
       list-style: none;
       display: flex;
       gap: 25px;
+      justify-self: center;
     }
 
     @media (max-width: 900px) {.page-home .nav-menu {
