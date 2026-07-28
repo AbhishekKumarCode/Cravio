@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Home/Home.css'
 import './ITServices.css'
@@ -14,6 +14,10 @@ const ICONS = {
   bolt: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
   layers: <><path d="M12 2 2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></>,
   check: <polyline points="20 6 9 17 4 12"></polyline>,
+  shield: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></>,
+  clock: <><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>,
+  user: <><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></>,
+  fileText: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></>
 }
 
 const CAPABILITY_GROUPS = [
@@ -26,14 +30,16 @@ const CAPABILITY_GROUPS = [
 const INFRA_TIERS = [
   {
     tier: 'Essential Support',
-    price: '₹9,999–₹19,999/mo',
+    monthlyPrice: '₹9,999/mo',
+    annualPrice: '₹7,999/mo',
     desc: 'For small offices that need reliable day-to-day IT without hiring in-house.',
     features: ['Business-Hours Helpdesk', 'Patch & Update Management', 'Basic Network Monitoring', 'Up to 10 Users'],
     cta: 'Get Started',
   },
   {
     tier: 'Business Infrastructure',
-    price: '₹25,000–₹50,000/mo',
+    monthlyPrice: '₹25,000/mo',
+    annualPrice: '₹20,000/mo',
     desc: 'Hybrid cloud + on-prem management for growing teams running real workloads.',
     features: ['Priority Helpdesk, Extended Hours', 'Database Admin — MySQL / MongoDB / Oracle', 'Backup & Disaster Recovery', 'Up to 50 Users'],
     cta: 'Book a Call',
@@ -41,19 +47,55 @@ const INFRA_TIERS = [
   },
   {
     tier: 'Enterprise & Compliance',
-    price: 'Custom Quote',
+    monthlyPrice: 'Custom Quote',
+    annualPrice: 'Custom Quote',
     desc: '24/7 coverage and compliance-grade infrastructure for larger, regulated operations.',
     features: ['24/7 NOC Monitoring', 'SAP HANA / Oracle DB Administration', 'Security Audits & Hardening', 'Dedicated Engineer'],
     cta: 'Request Quote',
   },
 ]
 
-const SAAS_PRICING = [
-  { title: 'HRMS', price: 'From ₹99 / employee / mo', desc: 'Payroll, attendance, and performance tracking — scales with headcount.' },
-  { title: 'CRM', price: 'From ₹599 / user / mo', desc: 'Leads, pipelines, and follow-ups for sales teams.' },
-  { title: 'Helpdesk', price: 'From ₹1,999 / mo', desc: 'Flat pricing for small-to-mid support teams.' },
-  { title: 'Education ERP', price: 'From ₹35,000 / year', desc: 'Priced per institution, scales with student count.' },
-  { title: 'Loan Management System', price: 'Custom Quote', desc: 'Compliance-heavy — scoped per lender and loan book size.' },
+const SAAS_SOLUTIONS = [
+  {
+    title: 'HRMS',
+    monthlyPrice: 'From ₹99/employee/mo',
+    annualPrice: 'From ₹79/employee/mo',
+    desc: 'Payroll, attendance, and performance tracking — scales seamlessly with your headcount.',
+    badge: 'Self-Hosted or Cloud',
+    features: ['Auto Attendance Tracking', 'Custom Payroll Workflows', 'Employee Performance Metrics', 'Leaves Management Portal']
+  },
+  {
+    title: 'CRM',
+    monthlyPrice: 'From ₹599/user/mo',
+    annualPrice: 'From ₹479/user/mo',
+    desc: 'Leads pipelines, communication timelines, and automated follow-ups for high-performing sales teams.',
+    badge: 'Highly Configurable',
+    features: ['Visual Deal Pipeline', 'Automated Lead Routing', 'WhatsApp API Integration', 'Instant Analytics Reporting']
+  },
+  {
+    title: 'Helpdesk',
+    monthlyPrice: 'From ₹1,999/mo',
+    annualPrice: 'From ₹1,599/mo',
+    desc: 'Flat-rate customer support software for small-to-mid service desks and operations.',
+    badge: 'Flat Rate Pricing',
+    features: ['Shared Inbox Dashboard', 'SLAs Alert Triggers', 'Knowledge Base Hosting', 'CSAT Feedback Loop']
+  },
+  {
+    title: 'Education ERP',
+    monthlyPrice: 'From ₹35,000/year',
+    annualPrice: 'From ₹28,000/year',
+    desc: 'Complete student lifecycle software, from admissions to exams, built for schools & colleges.',
+    badge: 'Institutional Pack',
+    features: ['Student & Staff Databases', 'Online Fee Collection Gateway', 'Exams & Grading Models', 'Parent App Connectivity']
+  },
+  {
+    title: 'Loan Management System',
+    monthlyPrice: 'Custom Quote',
+    annualPrice: 'Custom Quote',
+    desc: 'Enterprise lending system with strict regulatory compliance, credit appraisals, and recovery records.',
+    badge: 'Compliance Heavy',
+    features: ['Digital KYC Onboarding', 'Credit Score Integration', 'Interest Rate Calculations', 'NPA Recovery Tracker']
+  }
 ]
 
 const INTEREST_OPTIONS = [
@@ -82,20 +124,20 @@ const NAV_LINKS = [
 ]
 
 const TECH_STACK = [
-  'Linux — Red Hat / Ubuntu / Fedora',
-  'VMware',
-  'AWS',
-  'Microsoft Azure',
-  'Google Cloud',
-  'Oracle Cloud',
-  'Open Source — OwnCloud / NextCloud / Seafile',
-  'Microsoft 365',
-  'Oracle DB / SAP HANA',
-  'MySQL / MongoDB',
-  'Node.js',
-  'WhatsApp API',
-  'SSL & Web Security',
-  'AI Agents & Automation',
+  { name: 'Linux — Red Hat / Ubuntu / Fedora', class: 'tech-linux' },
+  { name: 'VMware', class: 'tech-vmware' },
+  { name: 'AWS', class: 'tech-aws' },
+  { name: 'Microsoft Azure', class: 'tech-azure' },
+  { name: 'Google Cloud', class: 'tech-gcp' },
+  { name: 'Oracle Cloud', class: 'tech-oracle' },
+  { name: 'Open Source — OwnCloud / NextCloud / Seafile', class: 'tech-open-source' },
+  { name: 'Microsoft 365', class: 'tech-microsoft-365' },
+  { name: 'Oracle DB / SAP HANA', class: 'tech-sap' },
+  { name: 'MySQL / MongoDB', class: 'tech-databases' },
+  { name: 'Node.js', class: 'tech-node' },
+  { name: 'WhatsApp API', class: 'tech-whatsapp' },
+  { name: 'SSL & Web Security', class: 'tech-security' },
+  { name: 'AI Agents & Automation', class: 'tech-ai' }
 ]
 
 const PROCESS_STEPS = [
@@ -116,6 +158,52 @@ function ITServices() {
   const navigate = useNavigate()
   const [form, setForm] = useState({ company: '', email: '', interest: '', teamSize: '', message: '' })
   const [status, setStatus] = useState('idle')
+  
+  // Interactive Dashboard States
+  const [cpu, setCpu] = useState(45)
+  const [memory, setMemory] = useState(58)
+  const [logs, setLogs] = useState([
+    { time: '17:08:12', type: 'info', msg: 'System initialized on host cluster-x9' },
+    { time: '17:08:14', type: 'success', msg: 'Database connection to PostgreSQL pool secure' },
+    { time: '17:08:17', type: 'success', msg: 'SSL Certificates verified for all domains' },
+  ])
+  
+  const [activeSaaS, setActiveSaaS] = useState(0)
+  const [billingCycle, setBillingCycle] = useState('annual') // 'monthly' or 'annual'
+
+  // Simulated server statistics
+  useEffect(() => {
+    const metricsInterval = setInterval(() => {
+      setCpu(Math.floor(Math.random() * (74 - 38 + 1) + 38))
+      setMemory(Math.floor(Math.random() * (63 - 54 + 1) + 54))
+    }, 3000)
+
+    const logPool = [
+      { type: 'success', msg: 'Daily backup cluster synchronised: 0 bytes delta' },
+      { type: 'info', msg: 'Cron execution completed: update_user_analytics' },
+      { type: 'success', msg: 'WhatsApp API Gateway heartbeat response [200 OK]' },
+      { type: 'success', msg: 'NextCloud storage sync complete - 0 conflicts' },
+      { type: 'info', msg: 'Nginx request router: healthcheck endpoints reporting healthy' },
+      { type: 'warn', msg: 'High disk latency detected on backup-node-2 (resolved)' },
+      { type: 'success', msg: 'Automatic patch deployment: Linux Kernel update active' },
+    ]
+
+    const logsInterval = setInterval(() => {
+      const now = new Date()
+      const timeStr = now.toTimeString().split(' ')[0]
+      const randomLog = logPool[Math.floor(Math.random() * logPool.length)]
+      
+      setLogs(prev => [
+        ...prev.slice(-3), // keep last 4 logs
+        { time: timeStr, ...randomLog }
+      ])
+    }, 4500)
+
+    return () => {
+      clearInterval(metricsInterval)
+      clearInterval(logsInterval)
+    }
+  }, [])
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -144,40 +232,291 @@ function ITServices() {
     })
   }
 
+  // Helper to render SaaS dashboard mockup dynamically
+  function renderSaaSMockup() {
+    switch (activeSaaS) {
+      case 0: // HRMS
+        return (
+          <div className="saas-dashboard-mockup">
+            <div className="mockup-header">
+              <div className="mockup-dot-group">
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+              </div>
+              <div className="mockup-header-title">HRMS PORTAL</div>
+            </div>
+            <div className="mockup-content">
+              <div className="hrms-stat-row">
+                <div className="hrms-stat-card">
+                  <div className="hrms-stat-num">142</div>
+                  <div className="hrms-stat-lbl">Employees</div>
+                </div>
+                <div className="hrms-radial-box">
+                  <svg className="hrms-radial-svg" viewBox="0 0 36 36">
+                    <circle className="hrms-radial-bg" cx="18" cy="18" r="16"></circle>
+                    <circle className="hrms-radial-val" cx="18" cy="18" r="16"></circle>
+                  </svg>
+                  <div>
+                    <div className="hrms-stat-num" style={{ fontSize: '15px' }}>96.8%</div>
+                    <div className="hrms-stat-lbl">Attendance</div>
+                  </div>
+                </div>
+              </div>
+              <div className="hrms-list">
+                <div className="hrms-item">
+                  <div className="hrms-emp">
+                    <div className="hrms-dot active"></div>
+                    <span>Rajesh Kumar</span>
+                  </div>
+                  <span style={{ color: 'var(--text-secondary)' }}>09:02 AM Clock-in</span>
+                </div>
+                <div className="hrms-item">
+                  <div className="hrms-emp">
+                    <div className="hrms-dot active"></div>
+                    <span>Sara Mathews</span>
+                  </div>
+                  <span style={{ color: 'var(--text-secondary)' }}>08:58 AM Clock-in</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 1: // CRM
+        return (
+          <div className="saas-dashboard-mockup">
+            <div className="mockup-header">
+              <div className="mockup-dot-group">
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+              </div>
+              <div className="mockup-header-title">SALES CRM</div>
+            </div>
+            <div className="mockup-content">
+              <div className="crm-stage-container">
+                <div className="crm-stage-bar-item">
+                  <div className="crm-stage-meta">
+                    <span className="crm-stage-lbl">1. Contacted Leads</span>
+                    <span className="crm-stage-val">₹4,20,000</span>
+                  </div>
+                  <div className="crm-stage-track">
+                    <div className="crm-stage-fill" style={{ width: '85%' }}></div>
+                  </div>
+                </div>
+                <div className="crm-stage-bar-item">
+                  <div className="crm-stage-meta">
+                    <span className="crm-stage-lbl">2. Proposal Sent</span>
+                    <span className="crm-stage-val">₹2,80,000</span>
+                  </div>
+                  <div className="crm-stage-track">
+                    <div className="crm-stage-fill" style={{ width: '60%' }}></div>
+                  </div>
+                </div>
+                <div className="crm-stage-bar-item">
+                  <div className="crm-stage-meta">
+                    <span className="crm-stage-lbl">3. Closed Won</span>
+                    <span className="crm-stage-val">₹1,95,000</span>
+                  </div>
+                  <div className="crm-stage-track">
+                    <div className="crm-stage-fill" style={{ width: '45%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 2: // Helpdesk
+        return (
+          <div className="saas-dashboard-mockup">
+            <div className="mockup-header">
+              <div className="mockup-dot-group">
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+              </div>
+              <div className="mockup-header-title">SUPPORT HELPDESK</div>
+            </div>
+            <div className="mockup-content">
+              <div className="hrms-stat-row" style={{ marginBottom: '8px' }}>
+                <div className="hrms-stat-card">
+                  <div className="hrms-stat-num" style={{ color: '#ef4444' }}>4</div>
+                  <div className="hrms-stat-lbl">Open Tickets</div>
+                </div>
+                <div className="hrms-stat-card">
+                  <div className="hrms-stat-num" style={{ color: 'var(--accent-2)' }}>12m</div>
+                  <div className="hrms-stat-lbl">Avg Response</div>
+                </div>
+              </div>
+              <div className="hd-ticket-list">
+                <div className="hd-ticket-item urgent">
+                  <span>Server lag in Database Node A</span>
+                  <span className="hd-tag urgent">URGENT</span>
+                </div>
+                <div className="hd-ticket-item">
+                  <span>User setup permission query</span>
+                  <span className="hd-tag normal">NORMAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 3: // Education ERP
+        return (
+          <div className="saas-dashboard-mockup">
+            <div className="mockup-header">
+              <div className="mockup-dot-group">
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+              </div>
+              <div className="mockup-header-title">CAMPUS ERP</div>
+            </div>
+            <div className="mockup-content">
+              <div className="edu-grid">
+                <div className="edu-card">
+                  <div className="edu-lbl">Total Students</div>
+                  <div className="edu-val">1,240</div>
+                </div>
+                <div className="edu-card">
+                  <div className="edu-lbl">Staff Active</div>
+                  <div className="edu-val">84</div>
+                </div>
+              </div>
+              <div className="hrms-list">
+                <div className="hrms-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                    <span>Fee Collection Progress</span>
+                    <span style={{ color: '#10b981' }}>88%</span>
+                  </div>
+                  <div className="crm-stage-track" style={{ height: '5px' }}>
+                    <div className="crm-stage-fill" style={{ width: '88%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 4: // Loan Management System
+        return (
+          <div className="saas-dashboard-mockup">
+            <div className="mockup-header">
+              <div className="mockup-dot-group">
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+                <div className="mockup-dot"></div>
+              </div>
+              <div className="mockup-header-title">LOAN MANAGEMENT</div>
+            </div>
+            <div className="mockup-content">
+              <div className="lms-row">
+                <span className="lms-lbl">Active Portfolio</span>
+                <span className="lms-val">₹4.85 Crore</span>
+              </div>
+              <div className="lms-row">
+                <span className="lms-lbl">Risk Model Rating</span>
+                <span className="lms-status">Secure (AAA)</span>
+              </div>
+              <div className="lms-row">
+                <span className="lms-lbl">KYC Verification Rate</span>
+                <span className="lms-val" style={{ color: 'var(--accent-2)' }}>100%</span>
+              </div>
+              <div className="lms-row">
+                <span className="lms-lbl">NPA Ratio</span>
+                <span className="lms-val" style={{ color: '#10b981' }}>0.42%</span>
+              </div>
+            </div>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="page-home page-itservices">
       <SiteHeader links={NAV_LINKS} />
 
-      <section className="hero" style={{ minHeight: 'auto', padding: '90px 0 70px' }}>
+      <section className="hero" style={{ minHeight: 'auto', padding: '100px 0 80px' }}>
         <div className="glowing-blob-container"><div className="glowing-blob"></div></div>
         <div className="container itservices-hero-grid">
           <div>
-            <span className="section-eyebrow">IT INFRASTRUCTURE & SAAS</span>
+            <div className="announcement-pill">
+              <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, stroke: 'currentColor', strokeWidth: 2, fill: 'none' }}>{ICONS.bolt}</svg>
+              <span>NEW: Managed SaaS Deployments</span>
+            </div>
             <h1 className="itservices-hero-title">
               Run your business on <em>infrastructure that just works</em>.
             </h1>
-            <p className="hero-desc-copy" style={{ maxWidth: 480 }}>
+            <p className="hero-desc-copy" style={{ maxWidth: 520, fontSize: 16, lineHeight: 1.65, color: 'var(--text-secondary)', marginBottom: 35 }}>
               From on-prem servers and cloud migration to HRMS, CRM, and helpdesk platforms — Craivo's IT & SaaS
               division handles the infrastructure and the software your operations run on.
             </p>
-            <div style={{ display: 'flex', gap: 15, alignItems: 'center', flexWrap: 'wrap' }}>
-              <a href="#pricing" className="hero-know-more">See Pricing <span>→</span></a>
-              <a href="#capabilities" className="hero-secondary-btn">See Capabilities</a>
+            <div className="hero-ctas">
+              <a href="#pricing" className="hero-know-more" style={{ background: 'var(--accent)', color: '#fff', border: 'none', padding: '14px 28px', borderRadius: 10, boxShadow: '0 4px 15px rgba(var(--accent-rgb), 0.2)' }}>See Pricing <span>→</span></a>
+              <a href="#capabilities" className="hero-secondary-btn" style={{ background: 'var(--bg-alt)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', padding: '14px 28px', borderRadius: 10 }}>See Capabilities</a>
+            </div>
+            <div className="itservices-hero-stats">
+              <div className="itservices-stat">
+                <strong>5+</strong>
+                <span>SaaS Solutions</span>
+              </div>
+              <div className="itservices-stat" style={{ borderLeft: '1px solid var(--border-color)', paddingLeft: 20 }}>
+                <strong>24/7</strong>
+                <span>Monitoring Active</span>
+              </div>
+              <div className="itservices-stat" style={{ borderLeft: '1px solid var(--border-color)', paddingLeft: 20 }}>
+                <strong>99.9%</strong>
+                <span>Uptime SLA</span>
+              </div>
             </div>
           </div>
 
-          <div className="itservices-hero-stats">
-            <div className="itservices-stat">
-              <strong>5+</strong>
-              <span>Ready-Made SaaS Platforms</span>
-            </div>
-            <div className="itservices-stat">
-              <strong>24/7</strong>
-              <span>Infrastructure Monitoring</span>
-            </div>
-            <div className="itservices-stat">
-              <strong>10+</strong>
-              <span>Cloud & Database Technologies</span>
+          {/* Interactive Server Status Console Mockup */}
+          <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+            <div className="itservices-console">
+              <div className="itservices-console-header">
+                <div className="console-dots">
+                  <div className="console-dot red"></div>
+                  <div className="console-dot yellow"></div>
+                  <div className="console-dot green"></div>
+                </div>
+                <div className="console-title">Cluster Status — live console</div>
+              </div>
+              <div className="console-body">
+                <div className="console-stats-grid">
+                  <div className="console-stat-box">
+                    <div className="console-stat-label">
+                      <span>CPU LOAD</span>
+                      <span style={{ color: cpu > 65 ? '#f59e0b' : '#10b981' }}>● Live</span>
+                    </div>
+                    <div className="console-stat-value">{cpu}%</div>
+                    <div className="console-progress-bg">
+                      <div className="console-progress-fill" style={{ width: `${cpu}%` }}></div>
+                    </div>
+                  </div>
+                  <div className="console-stat-box">
+                    <div className="console-stat-label">
+                      <span>MEM USE</span>
+                      <span style={{ color: '#10b981' }}>● Live</span>
+                    </div>
+                    <div className="console-stat-value">{memory}%</div>
+                    <div className="console-progress-bg">
+                      <div className="console-progress-fill" style={{ width: `${memory}%`, background: 'linear-gradient(90deg, var(--accent-2), #10b981)' }}></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="console-logs">
+                  {logs.map((log, index) => (
+                    <div className="console-log-line" key={index}>
+                      <span className="log-time">{log.time}</span>
+                      <span className={`log-tag ${log.type}`}>{log.type}</span>
+                      <span className="log-msg">{log.msg}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -192,14 +531,14 @@ function ITServices() {
           <div className="services-grid-container">
             {CAPABILITY_GROUPS.map((group, i) => (
               <div className="service-tile" key={group.title}>
-                <div className="service-tile-top">
+                <div className="service-tile-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 25 }}>
                   <div className="service-icon-wrapper">
-                    <svg viewBox="0 0 24 24">{ICONS[group.icon]}</svg>
+                    <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, stroke: 'currentColor', strokeWidth: 2, fill: 'none' }}>{ICONS[group.icon]}</svg>
                   </div>
                   <div className="service-watermark">0{i + 1}</div>
                 </div>
-                <h3 className="service-tile-name">{group.title}</h3>
-                <p className="service-tile-desc">{group.desc}</p>
+                <h3 className="service-tile-name" style={{ fontSize: 20, fontWeight: 700, marginBottom: 12, color: 'var(--text-primary)' }}>{group.title}</h3>
+                <p className="service-tile-desc" style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{group.desc}</p>
               </div>
             ))}
           </div>
@@ -214,7 +553,7 @@ function ITServices() {
           </div>
           <div className="tech-badge-grid">
             {TECH_STACK.map((tech) => (
-              <span className="tech-badge" key={tech}>{tech}</span>
+              <span className={`tech-badge ${tech.class}`} key={tech.name}>{tech.name}</span>
             ))}
           </div>
         </div>
@@ -226,20 +565,43 @@ function ITServices() {
             <span className="section-eyebrow">SAAS SOLUTIONS</span>
             <h2 className="section-title">Or skip the build — deploy a ready-made platform.</h2>
           </div>
-          <div className="services-grid-container">
-            {SAAS_PRICING.map((sol, i) => (
-              <div className="service-tile" key={sol.title}>
-                <div className="service-tile-top">
-                  <div className="service-icon-wrapper">
-                    <svg viewBox="0 0 24 24">{ICONS.layers}</svg>
-                  </div>
-                  <div className="service-watermark">0{i + 1}</div>
-                </div>
-                <h3 className="service-tile-name">{sol.title}</h3>
-                <p className="service-tile-desc">{sol.desc}</p>
-                <a href="#contact" className="service-tile-explore">Get a Quote →</a>
+
+          {/* Interactive SaaS Showcase Tabs */}
+          <div className="saas-showcase-container">
+            <div className="saas-tabs">
+              {SAAS_SOLUTIONS.map((sol, index) => (
+                <button
+                  key={sol.title}
+                  className={`saas-tab-btn ${activeSaaS === index ? 'active' : ''}`}
+                  onClick={() => setActiveSaaS(index)}
+                >
+                  {sol.title}
+                </button>
+              ))}
+            </div>
+
+            <div className="saas-preview-grid">
+              <div className="saas-preview-info">
+                <span className="saas-preview-badge">{SAAS_SOLUTIONS[activeSaaS].badge}</span>
+                <h3 className="saas-preview-title">{SAAS_SOLUTIONS[activeSaaS].title}</h3>
+                <p className="saas-preview-desc">{SAAS_SOLUTIONS[activeSaaS].desc}</p>
+                
+                <ul className="saas-preview-features">
+                  {SAAS_SOLUTIONS[activeSaaS].features.map((feat) => (
+                    <li className="saas-preview-feature-item" key={feat}>
+                      <svg viewBox="0 0 24 24">{ICONS.check}</svg>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a href="#contact" className="saas-preview-cta">Get a Quote</a>
               </div>
-            ))}
+
+              <div className="saas-mockup-wrapper">
+                {renderSaaSMockup()}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -251,9 +613,7 @@ function ITServices() {
             <h2 className="section-title">From audit to ongoing support.</h2>
           </div>
           <div className="process-flow-container">
-            <div className="process-connecting-line">
-              <div className="process-line-progress" style={{ width: '100%' }}></div>
-            </div>
+            <div className="process-connecting-line"></div>
             <div className="process-steps">
               {PROCESS_STEPS.map((step, i) => (
                 <div className="process-step active" key={step.title}>
@@ -270,14 +630,12 @@ function ITServices() {
       </section>
 
       <section className="section-dark-interlude">
-        <div className="container">
-          <p className="dark-interlude-statement">
-            Built on the same infrastructure trusted by <em>Vercel, Stripe &amp; Linear</em> — so your site stays
-            fast, secure, and easy to maintain for years.
+        <div className="container" style={{ textAlign: 'center' }}>
+          <p className="dark-interlude-statement" style={{ maxWidth: 800, margin: '0 auto 20px', fontSize: 'clamp(20px, 2.5vw, 28px)', lineHeight: 1.45 }}>
+            Enterprise-grade reliability. <em>Zero lock-in</em>.
           </p>
-          <p className="dark-interlude-buyer-copy">
-            No lock-in, no bloat, no proprietary page builder holding your content hostage. Just clean,
-            production-grade code that your own team can read, extend, and hand off to any developer later.
+          <p className="dark-interlude-buyer-copy" style={{ maxWidth: 650, margin: '0 auto', fontSize: 15, color: '#96A2AD', lineHeight: 1.6 }}>
+            Built on secure, high-availability architecture with automatic failovers, automated backups, and 24/7 monitoring. Get clean, production-grade systems that your team can read, extend, and own.
           </p>
         </div>
       </section>
@@ -288,19 +646,30 @@ function ITServices() {
             <span className="section-eyebrow">PRICING</span>
             <h2 className="section-title">Managed IT & Infrastructure Plans</h2>
           </div>
+
+          {/* Billing Cycle Switch Toggle */}
+          <div className="billing-toggle-container">
+            <span className={`billing-label ${billingCycle === 'monthly' ? 'active' : ''}`} onClick={() => setBillingCycle('monthly')}>Monthly</span>
+            <div className={`billing-switch ${billingCycle === 'annual' ? 'annual' : ''}`} onClick={() => setBillingCycle(prev => prev === 'monthly' ? 'annual' : 'monthly')}>
+              <div className="billing-switch-handle"></div>
+            </div>
+            <span className={`billing-label ${billingCycle === 'annual' ? 'active' : ''}`} onClick={() => setBillingCycle('annual')}>Annual</span>
+            <span className="discount-badge">Save 20%</span>
+          </div>
+
           <div className="pricing-grid">
             {INFRA_TIERS.map((t) => (
               <div className={`pricing-card${t.featured ? ' featured' : ''}`} key={t.tier}>
                 <div className="pricing-header">
                   <span className="pricing-tier">{t.tier}</span>
-                  <h3 className="pricing-price">{t.price}</h3>
+                  <h3 className="pricing-price">{billingCycle === 'annual' ? t.annualPrice : t.monthlyPrice}</h3>
                 </div>
-                <p className="service-tile-desc pricing-desc">{t.desc}</p>
+                <p className="pricing-desc">{t.desc}</p>
                 <ul className="pricing-features">
                   {t.features.map((f) => (
                     <li className="pricing-feature-item" key={f}>
                       <svg viewBox="0 0 24 24">{ICONS.check}</svg>
-                      {f}
+                      <span>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -314,13 +683,13 @@ function ITServices() {
             <h2 className="section-title">Simple pricing per platform.</h2>
           </div>
           <div className="pricing-grid saas-pricing-grid">
-            {SAAS_PRICING.map((sol) => (
+            {SAAS_SOLUTIONS.map((sol) => (
               <div className="pricing-card compact" key={sol.title}>
                 <div className="pricing-header">
                   <span className="pricing-tier">{sol.title}</span>
-                  <h3 className="pricing-price">{sol.price}</h3>
+                  <h3 className="pricing-price">{billingCycle === 'annual' ? sol.annualPrice : sol.monthlyPrice}</h3>
                 </div>
-                <p className="service-tile-desc pricing-desc">{sol.desc}</p>
+                <p className="pricing-desc" style={{ minHeight: 48 }}>{sol.desc}</p>
                 <a href="#contact" className="pricing-btn">Get a Quote</a>
               </div>
             ))}
@@ -335,12 +704,39 @@ function ITServices() {
         </div>
         <div className="container">
           <div className="contact-container">
-            <div>
-              <span className="section-eyebrow">GET A QUOTE</span>
-              <h2 className="giant-contact-headline">Tell us what you need <em>running</em>.</h2>
-              <p className="contact-proposal-text">
-                Share a few details and we'll get back to you with a scoped quote — no obligation.
-              </p>
+            <div className="contact-left-info">
+              <div>
+                <span className="section-eyebrow">GET A QUOTE</span>
+                <h2 className="giant-contact-headline" style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 800, lineHeight: 1.15, margin: '15px 0 20px' }}>Tell us what you need <em>running</em>.</h2>
+                <p className="contact-proposal-text" style={{ fontSize: 15.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 30 }}>
+                  Share a few details and we'll get back to you with a scoped quote — no obligation.
+                </p>
+              </div>
+
+              {/* Service SLA & Trust Badges */}
+              <div className="sla-box">
+                <div className="sla-title">Response Speed Guarantee</div>
+                <p className="sla-desc">Our technical managers review and respond to infrastructure requests within 2 hours SLA during business operations.</p>
+              </div>
+
+              <div className="trust-badges-grid">
+                <div className="trust-badge-item">
+                  <svg viewBox="0 0 24 24" style={{ width: 16, height: 16 }}>{ICONS.shield}</svg>
+                  <span>Strict NDA Covered</span>
+                </div>
+                <div className="trust-badge-item">
+                  <svg viewBox="0 0 24 24" style={{ width: 16, height: 16 }}>{ICONS.clock}</svg>
+                  <span>24/7 Monitoring Available</span>
+                </div>
+                <div className="trust-badge-item">
+                  <svg viewBox="0 0 24 24" style={{ width: 16, height: 16 }}>{ICONS.user}</svg>
+                  <span>Dedicated Account Manager</span>
+                </div>
+                <div className="trust-badge-item">
+                  <svg viewBox="0 0 24 24" style={{ width: 16, height: 16 }}>{ICONS.fileText}</svg>
+                  <span>Transparent Fixed Scope</span>
+                </div>
+              </div>
             </div>
 
             <div className="contact-right" style={{ width: '100%' }}>
