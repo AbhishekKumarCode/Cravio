@@ -4,8 +4,8 @@ import '../Home/Home.css'
 import './ITServices.css'
 import { usePageMeta } from '../../lib/usePageMeta.js'
 import { submitContactForm } from '../../lib/submitContactForm.js'
-import SiteHeader from '../../components/SiteHeader.jsx'
 import SiteFooter from '../../components/SiteFooter.jsx'
+import BoomerangVideoBg from './BoomerangVideoBg.jsx'
 
 const ICONS = {
   server: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></>,
@@ -115,14 +115,6 @@ const TEAM_SIZE_OPTIONS = [
   { value: '200+', label: '200+ People' },
 ]
 
-const NAV_LINKS = [
-  { href: '#capabilities', label: 'Capabilities' },
-  { href: '#technologies', label: 'Technologies' },
-  { href: '#solutions', label: 'SaaS Solutions' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#contact', label: 'Get a Quote', accent: true },
-]
-
 const TECH_STACK = [
   { name: 'Linux — Red Hat / Ubuntu / Fedora', class: 'tech-linux' },
   { name: 'VMware', class: 'tech-vmware' },
@@ -158,52 +150,16 @@ function ITServices() {
   const navigate = useNavigate()
   const [form, setForm] = useState({ company: '', email: '', interest: '', teamSize: '', message: '' })
   const [status, setStatus] = useState('idle')
-  
-  // Interactive Dashboard States
-  const [cpu, setCpu] = useState(45)
-  const [memory, setMemory] = useState(58)
-  const [logs, setLogs] = useState([
-    { time: '17:08:12', type: 'info', msg: 'System initialized on host cluster-x9' },
-    { time: '17:08:14', type: 'success', msg: 'Database connection to PostgreSQL pool secure' },
-    { time: '17:08:17', type: 'success', msg: 'SSL Certificates verified for all domains' },
-  ])
-  
+
+  const [navScrolled, setNavScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setNavScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const [activeSaaS, setActiveSaaS] = useState(0)
   const [billingCycle, setBillingCycle] = useState('annual') // 'monthly' or 'annual'
-
-  // Simulated server statistics
-  useEffect(() => {
-    const metricsInterval = setInterval(() => {
-      setCpu(Math.floor(Math.random() * (74 - 38 + 1) + 38))
-      setMemory(Math.floor(Math.random() * (63 - 54 + 1) + 54))
-    }, 3000)
-
-    const logPool = [
-      { type: 'success', msg: 'Daily backup cluster synchronised: 0 bytes delta' },
-      { type: 'info', msg: 'Cron execution completed: update_user_analytics' },
-      { type: 'success', msg: 'WhatsApp API Gateway heartbeat response [200 OK]' },
-      { type: 'success', msg: 'NextCloud storage sync complete - 0 conflicts' },
-      { type: 'info', msg: 'Nginx request router: healthcheck endpoints reporting healthy' },
-      { type: 'warn', msg: 'High disk latency detected on backup-node-2 (resolved)' },
-      { type: 'success', msg: 'Automatic patch deployment: Linux Kernel update active' },
-    ]
-
-    const logsInterval = setInterval(() => {
-      const now = new Date()
-      const timeStr = now.toTimeString().split(' ')[0]
-      const randomLog = logPool[Math.floor(Math.random() * logPool.length)]
-      
-      setLogs(prev => [
-        ...prev.slice(-3), // keep last 4 logs
-        { time: timeStr, ...randomLog }
-      ])
-    }, 4500)
-
-    return () => {
-      clearInterval(metricsInterval)
-      clearInterval(logsInterval)
-    }
-  }, [])
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -435,88 +391,66 @@ function ITServices() {
 
   return (
     <div className="page-home page-itservices">
-      <SiteHeader links={NAV_LINKS} />
+      <header className={`itsvc-nav${navScrolled ? ' scrolled' : ''}`}>
+        <div className="itsvc-nav-inner">
+          <a href="/" className="itsvc-logo" aria-label="Craivo Homepage">
+            <svg viewBox="0 0 256 256" fill="currentColor" className="itsvc-logo-mark">
+              <path d="M 144 256 L 27.598 256 L 144 139.598 Z" />
+              <path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z" />
+              <path d="M 0 204.402 L 0 112 L 92.402 112 Z" />
+            </svg>
+            <span>Craivo</span>
+          </a>
+          <nav className="itsvc-nav-links">
+            <a href="#capabilities">Capabilities</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Company</a>
+          </nav>
+          <a href="#contact" className="itsvc-nav-cta">Get a Quote</a>
+        </div>
+      </header>
 
-      <section className="hero" style={{ minHeight: 'auto', padding: '100px 0 80px' }}>
-        <div className="glowing-blob-container"><div className="glowing-blob"></div></div>
-        <div className="container itservices-hero-grid">
-          <div>
-            <div className="announcement-pill">
-              <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, stroke: 'currentColor', strokeWidth: 2, fill: 'none' }}>{ICONS.bolt}</svg>
-              <span>NEW: Managed SaaS Deployments</span>
-            </div>
-            <h1 className="itservices-hero-title">
-              Run your business on <em>infrastructure that just works</em>.
-            </h1>
-            <p className="hero-desc-copy" style={{ maxWidth: 520, fontSize: 16, lineHeight: 1.65, color: 'var(--text-secondary)', marginBottom: 35 }}>
-              From on-prem servers and cloud migration to HRMS, CRM, and helpdesk platforms — Craivo's IT & SaaS
-              division handles the infrastructure and the software your operations run on.
-            </p>
-            <div className="hero-ctas">
-              <a href="#pricing" className="hero-know-more" style={{ background: 'var(--accent)', color: '#fff', border: 'none', padding: '14px 28px', borderRadius: 10, boxShadow: '0 4px 15px rgba(var(--accent-rgb), 0.2)' }}>See Pricing <span>→</span></a>
-              <a href="#capabilities" className="hero-secondary-btn" style={{ background: 'var(--bg-alt)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', padding: '14px 28px', borderRadius: 10 }}>See Capabilities</a>
-            </div>
-            <div className="itservices-hero-stats">
-              <div className="itservices-stat">
-                <strong>5+</strong>
-                <span>SaaS Solutions</span>
-              </div>
-              <div className="itservices-stat" style={{ borderLeft: '1px solid var(--border-color)', paddingLeft: 20 }}>
-                <strong>24/7</strong>
-                <span>Monitoring Active</span>
-              </div>
-              <div className="itservices-stat" style={{ borderLeft: '1px solid var(--border-color)', paddingLeft: 20 }}>
-                <strong>99.9%</strong>
-                <span>Uptime SLA</span>
-              </div>
-            </div>
-          </div>
+      <section className="itsvc-hero">
+        <BoomerangVideoBg src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260715_090628_7052d8a6-a094-4341-a4a2-ad58493a67a9.mp4" />
 
-          {/* Interactive Server Status Console Mockup */}
-          <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-            <div className="itservices-console">
-              <div className="itservices-console-header">
-                <div className="console-dots">
-                  <div className="console-dot red"></div>
-                  <div className="console-dot yellow"></div>
-                  <div className="console-dot green"></div>
-                </div>
-                <div className="console-title">Cluster Status — live console</div>
-              </div>
-              <div className="console-body">
-                <div className="console-stats-grid">
-                  <div className="console-stat-box">
-                    <div className="console-stat-label">
-                      <span>CPU LOAD</span>
-                      <span style={{ color: cpu > 65 ? '#f59e0b' : '#10b981' }}>● Live</span>
-                    </div>
-                    <div className="console-stat-value">{cpu}%</div>
-                    <div className="console-progress-bg">
-                      <div className="console-progress-fill" style={{ width: `${cpu}%` }}></div>
-                    </div>
-                  </div>
-                  <div className="console-stat-box">
-                    <div className="console-stat-label">
-                      <span>MEM USE</span>
-                      <span style={{ color: '#10b981' }}>● Live</span>
-                    </div>
-                    <div className="console-stat-value">{memory}%</div>
-                    <div className="console-progress-bg">
-                      <div className="console-progress-fill" style={{ width: `${memory}%`, background: 'linear-gradient(90deg, var(--accent-2), #10b981)' }}></div>
-                    </div>
-                  </div>
-                </div>
+        <div className="itsvc-hero-copy">
+          <h1 className="itsvc-h1">Build infrastructure<br />that lasts.</h1>
+          <p className="itsvc-subcopy">
+            IT infrastructure and SaaS platforms for growing businesses — managed end to end across servers, cloud,
+            and the software your team runs on every day.
+          </p>
+          <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
+        </div>
 
-                <div className="console-logs">
-                  {logs.map((log, index) => (
-                    <div className="console-log-line" key={index}>
-                      <span className="log-time">{log.time}</span>
-                      <span className={`log-tag ${log.type}`}>{log.type}</span>
-                      <span className="log-msg">{log.msg}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className="itsvc-panel-outer">
+          <div className="itsvc-panel">
+            <div className="itsvc-panel-row1">
+              <div>
+                <span className="itsvc-microlabel">WHAT DO WE DO?</span>
+                <h2 className="itsvc-panel-title">Infrastructure that<br className="itsvc-br-sm" /> keeps running.</h2>
               </div>
+              <p className="itsvc-panel-body">
+                IT infrastructure and SaaS built for compliance-heavy operations. Systems that stay online, plug into
+                what you already run, and hand off cleanly to your own team.
+              </p>
+            </div>
+
+            <div className="itsvc-hairline"></div>
+
+            <div className="itsvc-feature-rows">
+              <a href="#capabilities" className="itsvc-feature-row">
+                <span><span className="itsvc-feature-num">01</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Managed</span></span>
+                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </a>
+              <a href="#technologies" className="itsvc-feature-row">
+                <span><span className="itsvc-feature-num">02</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Connected</span></span>
+                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </a>
+              <a href="#pricing" className="itsvc-feature-row">
+                <span><span className="itsvc-feature-num">03</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Compliant</span></span>
+                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </a>
             </div>
           </div>
         </div>
