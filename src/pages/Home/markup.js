@@ -91,28 +91,35 @@ export const homeMarkup = `
     </div>
 
     <!-- HERO SECTION -->
-    <section class="hero">
-      <!-- Floating Radial Glowing Blob -->
+    <section class="hero hero-has-video">
+      <!-- Floating Radial Glowing Blob (kept as a fallback layer under the video —
+           if the video fails to load, the hero still looks intentional, not blank) -->
       <div class="glowing-blob-container">
         <div class="glowing-blob"></div>
       </div>
 
+      <!-- Fullscreen looping background video -->
+      <video class="hero-bg-video" id="hero-bg-video" autoplay loop muted playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-scrim"></div>
+
       <div class="container hero-container-box">
         <!-- Giant Centered Title (Inspired brand-specific copy) -->
         <div class="hero-center-titles">
-          <h1 class="hero-headline-large">Websites That Build</h1>
-          <h2 class="hero-headline-gradient">Customers, Not Compliments.</h2>
+          <h1 class="hero-headline-large animate-fade-rise">Websites That Build</h1>
+          <h2 class="hero-headline-gradient animate-fade-rise-delay">Customers, Not Compliments.</h2>
         </div>
 
         <!-- Bottom Details & Avatar Button -->
         <div class="hero-bottom-row">
           <div class="hero-bottom-left">
-            <p class="hero-desc-copy">
+            <p class="hero-desc-copy animate-fade-rise-delay">
               Craivo is a web design and development agency that engineers bespoke, high-converting digital platforms
               for modern brands. Combining luxury visual strategy with lightning-fast code, we turn your online
               presence into a client generation engine.
             </p>
-            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+            <div class="animate-fade-rise-delay-2" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
               <a href="#contact" class="hero-know-more">Book a Discovery Call <span>→</span></a>
               <a href="#work" class="hero-secondary-btn">Explore Work</a>
             </div>

@@ -268,6 +268,30 @@ export function initHomeBehavior() {
   };
   window.addEventListener('scroll', handleScrollProgress);
 
+  // 6b. HERO VIDEO PARALLAX — video scrolls slower than the page and fades
+  // out as the hero leaves the viewport, instead of scrolling 1:1 with the content.
+  const heroVideo = document.getElementById('hero-bg-video');
+  const heroSection = heroVideo ? heroVideo.closest('.hero') : null;
+  let parallaxTicking = false;
+  const handleHeroParallax = () => {
+    if (!heroSection) return;
+    const rect = heroSection.getBoundingClientRect();
+    const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+    heroVideo.style.transform = `translateY(${progress * 60}px)`;
+    heroVideo.style.opacity = String(1 - progress * 0.7);
+    parallaxTicking = false;
+  };
+  const onScrollForParallax = () => {
+    if (!parallaxTicking) {
+      requestAnimationFrame(handleHeroParallax);
+      parallaxTicking = true;
+    }
+  };
+  if (heroVideo && heroSection) {
+    window.addEventListener('scroll', onScrollForParallax, { passive: true });
+    handleHeroParallax();
+  }
+
   // ==========================================================================
   // 9. PLAY INTRO SHOWCASE MODAL LOGIC
   // ==========================================================================
@@ -537,6 +561,7 @@ export function initHomeBehavior() {
   return function cleanupHomeBehavior() {
     window.removeEventListener('resize', handleResize);
     window.removeEventListener('scroll', handleScrollProgress);
+    window.removeEventListener('scroll', onScrollForParallax);
     window.removeEventListener('pageshow', handlePageshow);
     if (handlePricingModalKeydown) {
       document.removeEventListener('keydown', handlePricingModalKeydown);

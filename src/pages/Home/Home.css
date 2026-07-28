@@ -422,7 +422,78 @@
       position: relative;
       padding: 80px 0;
       border-bottom: var(--stitch-style);
-    }.page-home .glowing-blob-container {
+      overflow: hidden;
+    }
+
+    /* Video hero — forces a dark, light-text look regardless of the site's
+       light/dark toggle, since text needs to stay legible over an
+       unpredictable video frame either way. Overriding the shared vars here
+       (rather than touching every hero-* rule) re-themes all the existing
+       hero child elements — badges, buttons, trust row — for free. */
+    .page-home .hero.hero-has-video {
+      --bg: #071018;
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.75);
+      --border-color: rgba(255, 255, 255, 0.18);
+      --border-color-thick: rgba(255, 255, 255, 0.3);
+      --surface: rgba(255, 255, 255, 0.08);
+      --accent: #4A86D1;
+      --accent-2: #29A392;
+    }
+
+    .page-home .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      will-change: transform, opacity;
+    }
+
+    .page-home .hero-video-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(4, 8, 14, 0.6) 0%, rgba(4, 8, 14, 0.3) 40%, rgba(4, 8, 14, 0.75) 100%);
+      pointer-events: none;
+    }
+
+    @keyframes fade-rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-home .animate-fade-rise {
+      animation: fade-rise 0.8s ease-out both;
+    }
+
+    .page-home .animate-fade-rise-delay {
+      animation: fade-rise 0.8s ease-out 0.2s both;
+    }
+
+    .page-home .animate-fade-rise-delay-2 {
+      animation: fade-rise 0.8s ease-out 0.4s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page-home .animate-fade-rise,
+      .page-home .animate-fade-rise-delay,
+      .page-home .animate-fade-rise-delay-2 {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .page-home .glowing-blob-container {
       position: absolute;
       top: 45%;
       left: 50%;
