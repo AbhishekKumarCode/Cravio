@@ -115,23 +115,36 @@ function ITServices() {
     <div className="page-home page-itservices">
       <SiteHeader />
 
-      <section className="hero" style={{ minHeight: 'auto', padding: '80px 0 60px' }}>
+      <section className="hero" style={{ minHeight: 'auto', padding: '90px 0 70px' }}>
         <div className="glowing-blob-container"><div className="glowing-blob"></div></div>
-        <div className="container hero-container-box">
-          <div className="hero-center-titles">
-            <h1 className="hero-headline-large">IT Infrastructure &amp;</h1>
-            <h2 className="hero-headline-gradient">Ready-Made SaaS.</h2>
+        <div className="container itservices-hero-grid">
+          <div>
+            <span className="section-eyebrow">IT INFRASTRUCTURE & SAAS</span>
+            <h1 className="itservices-hero-title">
+              Run your business on <em>infrastructure that just works</em>.
+            </h1>
+            <p className="hero-desc-copy" style={{ maxWidth: 480 }}>
+              From on-prem servers and cloud migration to HRMS, CRM, and helpdesk platforms — Craivo's IT & SaaS
+              division handles the infrastructure and the software your operations run on.
+            </p>
+            <div style={{ display: 'flex', gap: 15, alignItems: 'center', flexWrap: 'wrap' }}>
+              <a href="#pricing" className="hero-know-more">See Pricing <span>→</span></a>
+              <a href="#capabilities" className="hero-secondary-btn">See Capabilities</a>
+            </div>
           </div>
-          <div className="hero-bottom-row">
-            <div className="hero-bottom-left">
-              <p className="hero-desc-copy">
-                From on-prem servers and cloud migration to HRMS, CRM, and helpdesk platforms — Craivo's IT & SaaS
-                division handles the infrastructure and the software your operations run on.
-              </p>
-              <div style={{ display: 'flex', gap: 15, alignItems: 'center', flexWrap: 'wrap' }}>
-                <a href="#pricing" className="hero-know-more">See Pricing <span>→</span></a>
-                <a href="#capabilities" className="hero-secondary-btn">See Capabilities</a>
-              </div>
+
+          <div className="itservices-hero-stats">
+            <div className="itservices-stat">
+              <strong>5+</strong>
+              <span>Ready-Made SaaS Platforms</span>
+            </div>
+            <div className="itservices-stat">
+              <strong>24/7</strong>
+              <span>Infrastructure Monitoring</span>
+            </div>
+            <div className="itservices-stat">
+              <strong>10+</strong>
+              <span>Cloud & Database Technologies</span>
             </div>
           </div>
         </div>
