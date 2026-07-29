@@ -277,7 +277,7 @@ export function initHomeBehavior() {
     if (!heroSection) return;
     const rect = heroSection.getBoundingClientRect();
     const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
-    heroVideo.style.transform = `translate(-62%, -62%) scale(1.5) translateY(${progress * 60}px)`;
+    heroVideo.style.transform = `translate(-50%, -50%) translateY(${progress * 60}px)`;
     heroVideo.style.opacity = String(1 - progress * 0.7);
     parallaxTicking = false;
   };

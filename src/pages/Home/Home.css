@@ -542,10 +542,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      /* Source video has a watermark baked into the bottom-right corner —
-         scaled up and shifted toward the top-left so that corner falls
-         outside the (overflow:hidden) hero instead of trying to mask it. */
-      transform: translate(-62%, -62%) scale(1.5);
+      transform: translate(-50%, -50%);
       min-width: 100%;
       min-height: 100%;
       width: auto;
