@@ -179,6 +179,14 @@ function ITServices() {
     return () => clearInterval(id)
   }, [])
 
+  const [heroPing, setHeroPing] = useState(18)
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHeroPing(14 + Math.floor(Math.random() * 10))
+    }, 2500)
+    return () => clearInterval(id)
+  }, [])
+
   const [activeSaaS, setActiveSaaS] = useState(0)
   const [billingCycle, setBillingCycle] = useState('annual') // 'monthly' or 'annual'
 
@@ -507,6 +515,12 @@ function ITServices() {
 
           <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
 
+          <div className="itsvc-hero-stats">
+            <div className="itsvc-hero-stat"><strong>5+</strong><span>SaaS Platforms</span></div>
+            <div className="itsvc-hero-stat"><strong>24/7</strong><span>Monitoring</span></div>
+            <div className="itsvc-hero-stat"><strong>99.9%</strong><span>Uptime SLA</span></div>
+          </div>
+
           <div className="itsvc-tabbar">
             {HERO_TABS.map((tab) => (
               <button
@@ -524,6 +538,10 @@ function ITServices() {
 
         <div className="itsvc-dash-shell">
           <div className="itsvc-dash-grid"></div>
+          <div className="itsvc-dash-live">
+            <span className="itsvc-dash-live-dot"></span>
+            All systems operational · {heroPing}ms
+          </div>
           {renderHeroDash()}
         </div>
 
