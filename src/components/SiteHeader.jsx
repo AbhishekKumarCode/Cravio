@@ -9,22 +9,24 @@ const DEFAULT_LINKS = [
 ]
 
 function SiteHeader({ links = DEFAULT_LINKS }) {
+  const navLinks = links.filter((link) => !link.accent)
+  const ctaLink = links.find((link) => link.accent)
+
   return (
     <header className="header">
       <div className="container nav-container">
-        <Link to="/" className="nav-logo" aria-label="Craivo Homepage">CRAIVO</Link>
-        <div className="nav-links-wrapper">
-          <ul className="nav-menu">
-            {links.map((link) => (
-              <li className="nav-item" key={link.href}>
-                {link.accent ? (
-                  <a href={link.href} className="nav-cta-btn">{link.label}</a>
-                ) : (
-                  <a href={link.href} className="nav-link">{link.label}</a>
-                )}
-              </li>
-            ))}
-          </ul>
+        <Link to="/" className="nav-logo" aria-label="Craivo Homepage">Craivo<sup>&reg;</sup></Link>
+
+        <ul className="nav-menu">
+          {navLinks.map((link) => (
+            <li className="nav-item" key={link.href}>
+              <a href={link.href} className="nav-link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="nav-right">
+          {ctaLink && <a href={ctaLink.href} className="nav-cta-btn">{ctaLink.label}</a>}
         </div>
       </div>
     </header>

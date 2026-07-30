@@ -5,14 +5,6 @@
   --accent-2-rgb: 20, 184, 166;
   --blob-gradient: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(20, 184, 166, 0.15) 50%, rgba(99, 102, 241, 0.05) 100%);
   background-color: var(--bg);
-  /* Its own premium type pairing instead of reusing Home's Instrument
-     Serif/Public Sans verbatim -- Fraunces (warm, characterful display
-     serif) + Work Sans (clean modern grotesk), both already loaded in
-     index.html (used by the Brew case study), so zero new font requests.
-     Every section on this page already reads var(--font-display)/
-     var(--font-body), so this one override upgrades the whole page. */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Work Sans', sans-serif;
 }
 
 [data-theme="dark"] .page-home.page-itservices {
@@ -70,12 +62,37 @@
 }
 
 .page-home.page-itservices .pricing-card.compact {
-  padding: 32px 26px;
+  padding: 30px 26px;
   justify-content: flex-start;
 }
 
+/* These prices are flat per-platform rates ("From ₹99/employee/mo"), much
+   longer than the main tiers' short ranges the base clamp/nowrap was tuned
+   for -- at this card's narrower width that combination overflowed instead
+   of wrapping cleanly. Also neither pricing tier here wires up the
+   click-for-breakdown modal Home has, so the inherited pointer cursor and
+   hover color were a false affordance -- nothing happens on click. */
+.page-home.page-itservices .pricing-price {
+  cursor: default;
+}
+
+.page-home.page-itservices .pricing-price:hover {
+  color: var(--text-primary);
+}
+
+.page-home.page-itservices .pricing-card.compact .pricing-tier {
+  letter-spacing: 0.08em;
+}
+
+.page-home.page-itservices .pricing-card.compact .pricing-price {
+  font-size: 21px;
+  white-space: normal;
+  line-height: 1.3;
+}
+
 .page-home.page-itservices .pricing-card.compact .pricing-desc {
-  margin-bottom: 26px;
+  margin: 12px 0 22px;
+  min-height: 0;
 }
 
 /* Feature icons read as accent-tinted product chips instead of the

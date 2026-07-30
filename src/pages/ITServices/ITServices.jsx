@@ -721,7 +721,7 @@ function ITServices() {
                   <span className="pricing-tier">{sol.title}</span>
                   <h3 className="pricing-price">{billingCycle === 'annual' ? sol.annualPrice : sol.monthlyPrice}</h3>
                 </div>
-                <p className="pricing-desc" style={{ minHeight: 48 }}>{sol.desc}</p>
+                <p className="pricing-desc">{sol.desc}</p>
                 <a href="#contact" className="pricing-btn">Get a Quote</a>
               </div>
             ))}
