@@ -208,10 +208,10 @@
       position: sticky;
       top: 0;
       width: 100%;
-      background-color: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-bottom: 1px solid transparent;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: var(--stitch-style);
       z-index: 1100;
       transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
     }
@@ -219,10 +219,16 @@
     /* Only Home's header sits before a fullscreen hero and needs to float
        over it with zero flow space reserved — position:fixed here, scoped by
        this modifier class, so the shared SiteHeader used on every other page
-       (which still needs its normal in-flow sticky behavior) is unaffected. */
+       (which still needs its normal in-flow sticky, solid-by-default header)
+       is unaffected. It also starts fully transparent (revealing the video)
+       until scrolled, unlike every other page's permanently-solid header. */
     .page-home .header.header-hero-overlay {
       position: fixed;
       left: 0;
+      background-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom-color: transparent;
     }.page-home .header.header-scrolled {
       background-color: var(--header-bg);
       backdrop-filter: blur(12px);
@@ -235,21 +241,21 @@
        the page's --text-primary/--text-secondary — those flip with the
        site's light/dark toggle and can't be relied on to read against an
        unpredictable video frame. */
-    .page-home .header:not(.header-scrolled) .nav-logo,
-    .page-home .header:not(.header-scrolled) .nav-link {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .nav-logo,
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .nav-link {
       color: #FFFFFF;
     }
 
-    .page-home .header:not(.header-scrolled) .nav-link:hover {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .nav-link:hover {
       color: rgba(255, 255, 255, 0.7);
     }
 
-    .page-home .header:not(.header-scrolled) .mobile-menu-btn {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .mobile-menu-btn {
       background: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .page-home .header:not(.header-scrolled) .mobile-menu-btn span {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .mobile-menu-btn span {
       background-color: #FFFFFF;
     }.page-home .scroll-progress-container {
       position: absolute;
@@ -342,7 +348,7 @@
       transform: scale(1.03);
     }
 
-    .page-home .header:not(.header-scrolled) .nav-cta-glass {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .nav-cta-glass {
       color: #FFFFFF;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(6px);
@@ -350,7 +356,7 @@
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
     }
 
-    .page-home .header:not(.header-scrolled) .nav-cta-glass::before {
+    .page-home .header.header-hero-overlay:not(.header-scrolled) .nav-cta-glass::before {
       content: '';
       position: absolute;
       inset: 0;
