@@ -25,9 +25,32 @@
 }
 
 [data-theme="dark"] .page-itservices section {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(129, 140, 248, 0.02) 1px, transparent 1px);
+}
+
+/* The hero's bottom panel is forced white regardless of theme (matching its
+   own design spec); the section right after it otherwise follows the site's
+   theme background, which is a hard white->near-black cut in dark mode.
+   Fading the first ~220px from white into the page's own --bg smooths that
+   seam without touching the panel's own fixed-white styling. */
+.page-itservices #capabilities {
+  background-image:
+    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff, var(--bg) 220px);
+  background-size: 50px 50px, 50px 50px, 100% 220px;
+  background-repeat: repeat, repeat, no-repeat;
+}
+
+[data-theme="dark"] .page-itservices #capabilities {
+  background-image:
+    linear-gradient(to right, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff, var(--bg) 220px);
+  background-size: 50px 50px, 50px 50px, 100% 220px;
+  background-repeat: repeat, repeat, no-repeat;
 }
 
 /* Fixed 3-col grids leave an orphaned card in the last row for 4- or
@@ -1467,6 +1490,17 @@
   object-position: top;
 }
 
+/* Soft light wash behind the headline/CTA — the source video's brightness
+   varies, so dark #191919 text needs a guaranteed-legible backdrop rather
+   than trusting whatever the footage happens to show at that moment. */
+.itsvc-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(ellipse 70% 55% at 50% 32%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 55%, rgba(255, 255, 255, 0) 78%);
+  pointer-events: none;
+}
+
 .itsvc-hero-copy {
   position: relative;
   z-index: 10;
@@ -1541,6 +1575,42 @@
 
 .itsvc-cta-btn:hover {
   background-color: rgba(25, 25, 25, 0.9);
+}
+
+.itsvc-hero-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.itsvc-cta-secondary {
+  display: inline-block;
+  margin-top: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #191919;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(25, 25, 25, 0.15);
+  padding: 11px 23px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .itsvc-cta-secondary { margin-top: 32px; padding: 13px 31px; }
+}
+
+@media (min-width: 768px) {
+  .itsvc-cta-secondary { margin-top: 40px; }
+}
+
+.itsvc-cta-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(25, 25, 25, 0.3);
 }
 
 .itsvc-panel-outer {

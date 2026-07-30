@@ -413,14 +413,18 @@ function ITServices() {
 
       <section className="itsvc-hero">
         <BoomerangVideoBg src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260715_090628_7052d8a6-a094-4341-a4a2-ad58493a67a9.mp4" />
+        <div className="itsvc-hero-scrim"></div>
 
         <div className="itsvc-hero-copy">
-          <h1 className="itsvc-h1">Build infrastructure<br />that lasts.</h1>
-          <p className="itsvc-subcopy">
+          <h1 className="itsvc-h1 animate-fade-rise">Build infrastructure<br />that lasts.</h1>
+          <p className="itsvc-subcopy animate-fade-rise-delay">
             IT infrastructure and SaaS platforms for growing businesses — managed end to end across servers, cloud,
             and the software your team runs on every day.
           </p>
-          <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
+          <div className="itsvc-hero-cta-row animate-fade-rise-delay-2">
+            <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
+            <a href="#capabilities" className="itsvc-cta-secondary">See Capabilities</a>
+          </div>
         </div>
 
         <div className="itsvc-panel-outer">
