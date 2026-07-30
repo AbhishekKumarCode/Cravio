@@ -164,6 +164,38 @@ function ITServices() {
     path: '/it-services',
   })
 
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: 'IT Infrastructure & SaaS Solutions',
+      provider: {
+        '@type': 'ProfessionalService',
+        name: 'Craivo',
+        url: 'https://craivo.craivo.workers.dev/',
+      },
+      areaServed: 'IN',
+      description: 'Managed IT infrastructure (servers, cloud, databases, security) and ready-made SaaS platforms (HRMS, CRM, Helpdesk, Education ERP, Loan Management) for growing businesses.',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'IT & SaaS Services',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Managed IT Infrastructure' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cloud Migration & Support' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'HRMS' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'CRM' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Helpdesk Software' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Education ERP' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Loan Management System' } },
+        ],
+      },
+    })
+    document.head.appendChild(script)
+    return () => script.remove()
+  }, [])
+
   const navigate = useNavigate()
   const [form, setForm] = useState({ company: '', email: '', interest: '', teamSize: '', message: '' })
   const [status, setStatus] = useState('idle')

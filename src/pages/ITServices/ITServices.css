@@ -499,6 +499,15 @@
   overflow: hidden;
 }
 
+/* 40px card padding + the section's own 20px mobile container padding ate
+   60px of a 375px screen on each side, leaving barely 255px for content. */
+@media (max-width: 640px) {
+  .saas-showcase-container {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+}
+
 [data-theme="dark"] .saas-showcase-container {
   background: rgba(19, 25, 32, 0.7);
   backdrop-filter: blur(16px);
@@ -1091,9 +1100,10 @@
 /* Billing Toggle Switch */
 .billing-toggle-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 10px 15px;
   margin: 30px 0 45px;
 }
 
