@@ -5,6 +5,7 @@ import './ITServices.css'
 import { usePageMeta } from '../../lib/usePageMeta.js'
 import { submitContactForm } from '../../lib/submitContactForm.js'
 import SiteFooter from '../../components/SiteFooter.jsx'
+import SiteHeader from '../../components/SiteHeader.jsx'
 
 const ICONS = {
   server: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></>,
@@ -34,6 +35,14 @@ const HERO_TABS = [
 ]
 
 const HERO_TECHS = ['AWS', 'Microsoft Azure', 'Google Cloud', 'Oracle Cloud', 'Linux', 'Node.js']
+
+const NAV_LINKS = [
+  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#technologies', label: 'Technologies' },
+  { href: '#solutions', label: 'SaaS Solutions' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#contact', label: 'Get a Quote', accent: true },
+]
 
 const INFRA_TIERS = [
   {
@@ -158,13 +167,6 @@ function ITServices() {
   const navigate = useNavigate()
   const [form, setForm] = useState({ company: '', email: '', interest: '', teamSize: '', message: '' })
   const [status, setStatus] = useState('idle')
-
-  const [navScrolled, setNavScrolled] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setNavScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const [activeHeroTab, setActiveHeroTab] = useState('infra')
   useEffect(() => {
@@ -476,27 +478,17 @@ function ITServices() {
 
   return (
     <div className="page-home page-itservices">
-      <header className={`itsvc-nav${navScrolled ? ' scrolled' : ''}`}>
-        <div className="itsvc-nav-inner">
-          <a href="/" className="itsvc-logo" aria-label="Craivo Homepage">
-            <svg viewBox="0 0 256 256" fill="currentColor" className="itsvc-logo-mark">
-              <path d="M 144 256 L 27.598 256 L 144 139.598 Z" />
-              <path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z" />
-              <path d="M 0 204.402 L 0 112 L 92.402 112 Z" />
-            </svg>
-            <span>Craivo</span>
-          </a>
-          <nav className="itsvc-nav-links">
-            <a href="#capabilities">Capabilities</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Company</a>
-          </nav>
-          <a href="#contact" className="itsvc-nav-cta">Get a Quote</a>
-        </div>
-      </header>
+      <SiteHeader links={NAV_LINKS} />
 
       <section className="itsvc-hero">
+        <div className="itsvc-hero-decor" aria-hidden="true">
+          <div className="itsvc-blob itsvc-blob-a"></div>
+          <div className="itsvc-blob itsvc-blob-b"></div>
+          <div className="itsvc-shape itsvc-shape-ring"></div>
+          <div className="itsvc-shape itsvc-shape-square"></div>
+          <div className="itsvc-shape itsvc-shape-dot"></div>
+        </div>
+
         <div className="itsvc-hero-inner">
           <div className="itsvc-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
