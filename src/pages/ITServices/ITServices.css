@@ -1469,10 +1469,34 @@
   .itsvc-blob, .itsvc-shape { animation: none; }
 }
 
-.itsvc-hero-inner {
+.itsvc-hero-split {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .itsvc-hero-split {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    gap: 48px;
+    text-align: left;
+  }
+
+  .itsvc-hero-split .itsvc-hero-inner { margin: 0; max-width: none; }
+  .itsvc-hero-split .itsvc-subcopy { margin-left: 0; margin-right: 0; }
+  .itsvc-hero-split .itsvc-hero-stats { justify-content: flex-start; }
+  .itsvc-hero-split .itsvc-dash-shell { margin: 0; }
+}
+
+.itsvc-hero-inner {
+  position: relative;
+  max-width: 620px;
   margin: 0 auto;
 }
 
@@ -1497,27 +1521,28 @@
 }
 
 .itsvc-badge span {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
   color: #191919;
 }
 
 .itsvc-h1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   color: #191919;
   margin: 0 0 20px;
 }
 
-@media (min-width: 640px) { .itsvc-h1 { font-size: 48px; } }
-@media (min-width: 768px) { .itsvc-h1 { font-size: 62px; } }
+@media (min-width: 640px) { .itsvc-h1 { font-size: 54px; } }
+@media (min-width: 768px) { .itsvc-h1 { font-size: 68px; } }
 
 .itsvc-h1 .itsvc-h1-accent {
   display: block;
+  font-style: italic;
   background: linear-gradient(90deg, #6366f1, #14b8a6);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1525,7 +1550,7 @@
 }
 
 .itsvc-subcopy {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: rgba(25, 25, 25, 0.65);
@@ -1541,12 +1566,14 @@
    Scoping under .page-itservices raises the specificity above that reset. */
 .page-itservices .itsvc-cta-btn {
   display: inline-block;
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: #ffffff;
   background-color: #191919;
-  padding: 13px 32px;
+  padding: 15px 34px;
   border-radius: 999px;
   text-decoration: none;
   transition: background-color 0.2s ease;
@@ -1573,14 +1600,14 @@
 }
 
 .itsvc-hero-stat strong {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 20px;
   font-weight: 700;
   color: #191919;
 }
 
 .itsvc-hero-stat span {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 11.5px;
   color: rgba(25, 25, 25, 0.5);
 }
@@ -1601,7 +1628,7 @@
   gap: 8px;
   padding: 10px 16px;
   border-radius: 8px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 500;
   color: #6b7280;
@@ -1663,7 +1690,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.7);
@@ -1712,7 +1739,7 @@
 }
 
 .itsvc-dash-title {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 15px;
   font-weight: 600;
   color: #191919;
@@ -1723,7 +1750,7 @@
 .itsvc-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #14b8a6); }
 
 .itsvc-step-list { display: flex; flex-direction: column; gap: 12px; }
-.itsvc-step-item { display: flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-size: 13.5px; color: #374151; }
+.itsvc-step-item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 13.5px; color: #374151; }
 .itsvc-step-item.muted { color: #9ca3af; }
 .itsvc-step-dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .itsvc-step-dot.done { background: #191919; }
@@ -1733,17 +1760,17 @@
 
 .itsvc-metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .itsvc-metric-box { background: #f9fafb; border-radius: 10px; padding: 14px; }
-.itsvc-metric-label { font-family: "Inter", sans-serif; font-size: 10.5px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
-.itsvc-metric-value { font-family: "Inter", sans-serif; font-size: 19px; font-weight: 600; color: #191919; }
+.itsvc-metric-label { font-family: var(--font-body); font-size: 10.5px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.itsvc-metric-value { font-family: var(--font-body); font-size: 19px; font-weight: 600; color: #191919; }
 
 .itsvc-success-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .itsvc-success-circle { width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .itsvc-success-circle svg { width: 24px; height: 24px; stroke: #16a34a; stroke-width: 3; fill: none; }
-.itsvc-success-title { font-family: "Inter", sans-serif; font-size: 17px; font-weight: 700; color: #191919; }
-.itsvc-success-sub { font-family: "Inter", sans-serif; font-size: 13px; color: #6b7280; margin: 0; }
+.itsvc-success-title { font-family: var(--font-body); font-size: 17px; font-weight: 700; color: #191919; }
+.itsvc-success-sub { font-family: var(--font-body); font-size: 13px; color: #6b7280; margin: 0; }
 
 .itsvc-check-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
-.itsvc-check-item { display: flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-size: 13.5px; color: #374151; }
+.itsvc-check-item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 13.5px; color: #374151; }
 .itsvc-check-item svg { width: 16px; height: 16px; stroke: #16a34a; stroke-width: 2.5; fill: none; flex-shrink: 0; }
 
 .itsvc-dash-cta {
@@ -1752,7 +1779,7 @@
   text-align: center;
   background: #191919;
   color: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 500;
   padding: 10px;
@@ -1771,7 +1798,7 @@
 }
 
 .itsvc-hero-tech {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   color: rgba(25, 25, 25, 0.45);
