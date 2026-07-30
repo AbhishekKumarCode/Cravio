@@ -17,9 +17,11 @@ function SiteHeader({ links = DEFAULT_LINKS }) {
           <ul className="nav-menu">
             {links.map((link) => (
               <li className="nav-item" key={link.href}>
-                <a href={link.href} className="nav-link" style={link.accent ? { color: 'var(--accent)', fontWeight: 700 } : undefined}>
-                  {link.label}
-                </a>
+                {link.accent ? (
+                  <a href={link.href} className="nav-cta-btn">{link.label}</a>
+                ) : (
+                  <a href={link.href} className="nav-link">{link.label}</a>
+                )}
               </li>
             ))}
           </ul>

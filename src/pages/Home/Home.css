@@ -325,6 +325,23 @@
       color: var(--text-primary);
     }.page-home .nav-link:hover::after {
       width: 100%;
+    }.page-home .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background-color: var(--accent);
+      padding: 10px 18px;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      white-space: nowrap;
+    }.page-home .nav-cta-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.3);
     }
 
     /* Nav CTA — liquid-glass pill while the header floats transparently over

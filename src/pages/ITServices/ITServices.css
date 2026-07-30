@@ -5,6 +5,14 @@
   --accent-2-rgb: 20, 184, 166;
   --blob-gradient: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(20, 184, 166, 0.15) 50%, rgba(99, 102, 241, 0.05) 100%);
   background-color: var(--bg);
+  /* Its own premium type pairing instead of reusing Home's Instrument
+     Serif/Public Sans verbatim -- Fraunces (warm, characterful display
+     serif) + Work Sans (clean modern grotesk), both already loaded in
+     index.html (used by the Brew case study), so zero new font requests.
+     Every section on this page already reads var(--font-display)/
+     var(--font-body), so this one override upgrades the whole page. */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Work Sans', sans-serif;
 }
 
 [data-theme="dark"] .page-home.page-itservices {
@@ -1372,7 +1380,9 @@
    ========================================================================== */
 .itsvc-hero {
   position: relative;
-  padding: 140px 24px 0;
+  /* SiteHeader is a normal in-flow bar (not a floating overlay), so the hero
+     only needs its own breathing room, not extra space to clear a fixed nav. */
+  padding: 64px 24px 0;
   background-color: #ffffff;
   color: #191919;
   text-align: center;
@@ -1380,7 +1390,7 @@
 }
 
 @media (min-width: 768px) {
-  .itsvc-hero { padding-top: 160px; }
+  .itsvc-hero { padding-top: 84px; }
 }
 
 .itsvc-hero-decor {
@@ -1803,4 +1813,40 @@
   font-weight: 600;
   color: rgba(25, 25, 25, 0.45);
   letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   SECTION POLISH -- Fraunces reads with real character at larger sizes, and
+   this page premium bar should feel higher than the rest of the site given
+   the ask for it to feel like a distinct, elevated product tier. Scoped to
+   .page-itservices so Home (which uses the same shared classes) is untouched.
+   ========================================================================== */
+.page-itservices .section-title {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.page-itservices .service-tile {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-itservices .service-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(var(--accent-rgb), 0.12);
+}
+
+.page-itservices .pricing-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.page-itservices .pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(var(--accent-rgb), 0.14);
+}
+
+.page-itservices .saas-showcase-container,
+.page-itservices .itservices-console,
+.page-itservices .sla-box {
+  transition: box-shadow 0.25s ease;
 }
