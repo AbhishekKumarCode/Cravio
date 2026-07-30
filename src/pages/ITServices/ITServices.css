@@ -1360,10 +1360,9 @@
 }
 
 /* ==========================================================================
-   NEW HERO — pixel-faithful reproduction of a separate design spec.
-   Deliberately hardcoded colors (white / #191919), not the page's violet
-   theme vars, and its own P22 Mackinac serif — this hero is a distinct,
-   self-contained composition, unlike the rest of the page.
+   NAVBAR — hardcoded colors (white / #191919), not the page's violet theme
+   vars, since it sits over the always-light hero below regardless of the
+   site's dark/light toggle.
    ========================================================================== */
 
 .itsvc-nav {
@@ -1461,320 +1460,264 @@
   background-color: rgba(25, 25, 25, 0.9);
 }
 
+
+/* ==========================================================================
+   HERO v2 -- adapted from the Stellar.ai reference design into Craivo IT
+   division: same structural pattern (badge, gradient headline, single CTA,
+   auto-cycling capability tabs with per-tab dashboard mockups, tech strip)
+   but re-themed with the page own violet/teal accent instead of a flat
+   black/gray gradient, and every tab/mockup shows a real IT service instead
+   of generic AI-product placeholders. Forced light (white bg, dark text)
+   regardless of the site theme toggle -- same reasoning as the dark
+   interlude section elsewhere on this page: a deliberate, self-contained
+   visual moment should not fight the light/dark switch.
+   ========================================================================== */
 .itsvc-hero {
   position: relative;
-  height: 100vh;
-  height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+  padding: 140px 24px 0;
   background-color: #ffffff;
   color: #191919;
-}
-
-.boomerang-video-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  transform: scale(1.15);
-  transform-origin: top center;
-}
-
-.boomerang-video,
-.boomerang-canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* Soft light wash behind the headline/CTA — the source video's brightness
-   varies, so dark #191919 text needs a guaranteed-legible backdrop rather
-   than trusting whatever the footage happens to show at that moment. */
-.itsvc-hero-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: radial-gradient(ellipse 70% 55% at 50% 32%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 55%, rgba(255, 255, 255, 0) 78%);
-  pointer-events: none;
-}
-
-.itsvc-hero-copy {
-  position: relative;
-  z-index: 10;
   text-align: center;
-  padding: 96px 16px 0;
-}
-
-@media (min-width: 640px) {
-  .itsvc-hero-copy { padding: 104px 24px 0; }
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
-  .itsvc-hero-copy { padding-top: 128px; }
+  .itsvc-hero { padding-top: 160px; }
+}
+
+.itsvc-hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.itsvc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px 7px 10px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: 999px;
+  margin-bottom: 28px;
+}
+
+.itsvc-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: #6366f1;
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.itsvc-badge span {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #191919;
 }
 
 .itsvc-h1 {
-  font-family: 'P22 Mackinac W01 Book', Georgia, serif;
-  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 36px;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: #191919;
-  margin: 0;
+  margin: 0 0 20px;
 }
 
-@media (min-width: 640px) {
-  .itsvc-h1 { font-size: 48px; }
-}
+@media (min-width: 640px) { .itsvc-h1 { font-size: 48px; } }
+@media (min-width: 768px) { .itsvc-h1 { font-size: 62px; } }
 
-@media (min-width: 768px) {
-  .itsvc-h1 { font-size: 72px; }
-}
-
-@media (min-width: 1024px) {
-  .itsvc-h1 { font-size: 96px; }
+.itsvc-h1 .itsvc-h1-accent {
+  display: block;
+  background: linear-gradient(90deg, #6366f1, #14b8a6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .itsvc-subcopy {
-  font-family: 'Inter', sans-serif;
-  max-width: 384px;
-  margin: 20px auto 0;
-  font-size: 14px;
-  color: rgba(25, 25, 25, 0.7);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   line-height: 1.6;
+  color: rgba(25, 25, 25, 0.65);
+  max-width: 520px;
+  margin: 0 auto 32px;
 }
 
-@media (min-width: 640px) {
-  .itsvc-subcopy { max-width: 448px; font-size: 16px; }
-}
+@media (min-width: 768px) { .itsvc-subcopy { font-size: 18px; } }
 
 .itsvc-cta-btn {
   display: inline-block;
-  margin-top: 24px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
   font-weight: 500;
   color: #ffffff;
   background-color: #191919;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 13px 32px;
+  border-radius: 999px;
   text-decoration: none;
   transition: background-color 0.2s ease;
-}
-
-@media (min-width: 640px) {
-  .itsvc-cta-btn { margin-top: 32px; padding: 14px 32px; }
-}
-
-@media (min-width: 768px) {
-  .itsvc-cta-btn { margin-top: 40px; }
+  margin-bottom: 44px;
 }
 
 .itsvc-cta-btn:hover {
-  background-color: rgba(25, 25, 25, 0.9);
+  background-color: #333333;
 }
 
-.itsvc-hero-cta-row {
+.itsvc-tabbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 40px;
+}
+
+.itsvc-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #6b7280;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.itsvc-tab-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.itsvc-tab-btn.active {
+  background: #ffffff;
+  color: #191919;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 560px) {
+  .itsvc-tabbar { display: grid; grid-template-columns: 1fr 1fr; max-width: 300px; }
+  .itsvc-tab-btn { justify-content: center; }
+}
+
+.itsvc-dash-shell {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 25% 15%, rgba(99, 102, 241, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 80% 85%, rgba(20, 184, 166, 0.25) 0%, transparent 65%),
+    #0b0f19;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
 }
 
-.itsvc-cta-secondary {
-  display: inline-block;
-  margin-top: 24px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #191919;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(25, 25, 25, 0.15);
-  padding: 11px 23px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+@media (min-width: 768px) { .itsvc-dash-shell { height: 440px; } }
+
+.itsvc-dash-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-@media (min-width: 640px) {
-  .itsvc-cta-secondary { margin-top: 32px; padding: 13px 31px; }
-}
-
-@media (min-width: 768px) {
-  .itsvc-cta-secondary { margin-top: 40px; }
-}
-
-.itsvc-cta-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(25, 25, 25, 0.3);
-}
-
-.itsvc-panel-outer {
+.itsvc-dash-card {
   position: relative;
-  z-index: 10;
-  margin-top: auto;
-  width: 100%;
-  max-width: 1024px;
-  padding: 0 16px;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 26px;
+  width: 320px;
+  max-width: calc(100vw - 64px);
+  text-align: left;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: itsvc-dash-in 0.4s ease-out both;
 }
 
-@media (min-width: 640px) {
-  .itsvc-panel-outer { padding: 0 24px; }
+@keyframes itsvc-dash-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.itsvc-panel {
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid #e5e7eb;
-  border-bottom: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  padding: 32px 20px 0;
+.itsvc-dash-title {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #191919;
+  margin: 0 0 18px;
 }
 
-@media (min-width: 640px) {
-  .itsvc-panel { padding: 48px 32px 0; }
-}
+.itsvc-progress-track { height: 6px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin-bottom: 20px; }
+.itsvc-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #14b8a6); }
 
-@media (min-width: 768px) {
-  .itsvc-panel { padding: 64px 48px 0; }
-}
+.itsvc-step-list { display: flex; flex-direction: column; gap: 12px; }
+.itsvc-step-item { display: flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-size: 13.5px; color: #374151; }
+.itsvc-step-item.muted { color: #9ca3af; }
+.itsvc-step-dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.itsvc-step-dot.done { background: #191919; }
+.itsvc-step-dot.done svg { width: 10px; height: 10px; stroke: #ffffff; stroke-width: 3; fill: none; }
+.itsvc-step-dot.active { border: 2px solid #6366f1; }
+.itsvc-step-dot.pending { border: 2px solid #e5e7eb; }
 
-.itsvc-panel-row1 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
+.itsvc-metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.itsvc-metric-box { background: #f9fafb; border-radius: 10px; padding: 14px; }
+.itsvc-metric-label { font-family: "Inter", sans-serif; font-size: 10.5px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.itsvc-metric-value { font-family: "Inter", sans-serif; font-size: 19px; font-weight: 600; color: #191919; }
 
-@media (min-width: 768px) {
-  .itsvc-panel-row1 { grid-template-columns: 1fr 1fr; gap: 64px; }
-}
+.itsvc-success-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.itsvc-success-circle { width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.itsvc-success-circle svg { width: 24px; height: 24px; stroke: #16a34a; stroke-width: 3; fill: none; }
+.itsvc-success-title { font-family: "Inter", sans-serif; font-size: 17px; font-weight: 700; color: #191919; }
+.itsvc-success-sub { font-family: "Inter", sans-serif; font-size: 13px; color: #6b7280; margin: 0; }
 
-.itsvc-microlabel {
+.itsvc-check-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.itsvc-check-item { display: flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-size: 13.5px; color: #374151; }
+.itsvc-check-item svg { width: 16px; height: 16px; stroke: #16a34a; stroke-width: 2.5; fill: none; flex-shrink: 0; }
+
+.itsvc-dash-cta {
   display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(25, 25, 25, 0.5);
-  font-weight: 500;
-}
-
-.itsvc-panel-title {
-  margin: 12px 0 0;
-  font-family: 'P22 Mackinac W01 Book', Georgia, serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: #191919;
-}
-
-@media (min-width: 640px) {
-  .itsvc-panel-title { font-size: 30px; }
-}
-
-@media (min-width: 768px) {
-  .itsvc-panel-title { font-size: 36px; }
-}
-
-.itsvc-br-sm {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .itsvc-br-sm { display: block; }
-}
-
-.itsvc-panel-body {
-  align-self: end;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: rgba(25, 25, 25, 0.7);
-  line-height: 1.6;
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .itsvc-panel-body { font-size: 15px; }
-}
-
-.itsvc-hairline {
-  margin-top: 24px;
-  height: 1px;
   width: 100%;
-  background-color: #e5e7eb;
-}
-
-@media (min-width: 640px) {
-  .itsvc-hairline { margin-top: 32px; }
-}
-
-@media (min-width: 768px) {
-  .itsvc-hairline { margin-top: 40px; }
-}
-
-.itsvc-feature-rows {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-}
-
-@media (min-width: 640px) {
-  .itsvc-feature-rows { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-}
-
-.itsvc-feature-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #F4F3F3;
-  padding: 14px 16px;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  transition: background-color 0.2s ease;
-}
-
-@media (min-width: 640px) {
-  .itsvc-feature-row { padding: 16px 24px; }
-}
-
-.itsvc-feature-row:hover {
-  background-color: #eaeaea;
-}
-
-.itsvc-feature-num {
-  font-family: 'Inter', sans-serif;
-  color: rgba(25, 25, 25, 0.4);
-}
-
-.itsvc-feature-slash {
-  margin: 0 8px;
-  color: rgba(25, 25, 25, 0.3);
-}
-
-.itsvc-feature-label {
-  font-family: 'Inter', sans-serif;
+  text-align: center;
+  background: #191919;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
   font-weight: 500;
-  color: #191919;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.itsvc-feature-arrow {
-  width: 16px;
-  height: 16px;
-  stroke: #9ca3af;
-  stroke-width: 2;
-  fill: none;
-  transition: transform 0.2s ease, stroke 0.2s ease;
+.itsvc-hero-techs {
+  margin: 44px auto 0;
+  padding-bottom: 56px;
+  max-width: 780px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px 36px;
 }
 
-.itsvc-feature-row:hover .itsvc-feature-arrow {
-  stroke: #374151;
-  transform: translateX(2px);
+.itsvc-hero-tech {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(25, 25, 25, 0.45);
+  letter-spacing: 0.01em;
 }

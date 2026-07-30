@@ -5,7 +5,6 @@ import './ITServices.css'
 import { usePageMeta } from '../../lib/usePageMeta.js'
 import { submitContactForm } from '../../lib/submitContactForm.js'
 import SiteFooter from '../../components/SiteFooter.jsx'
-import BoomerangVideoBg from './BoomerangVideoBg.jsx'
 
 const ICONS = {
   server: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></>,
@@ -26,6 +25,15 @@ const CAPABILITY_GROUPS = [
   { icon: 'cloud', title: 'Cloud & Collaboration', desc: 'OwnCloud, NextCloud, Seafile; AWS/Azure/Google/Oracle Cloud support; compute within your budget; mail migration (Zoho, Google, O365).' },
   { icon: 'bolt', title: 'Modern Stack', desc: 'AWS, Node.js, WhatsApp API integration, and SSL/web security, layered onto whatever you already run.' },
 ]
+
+const HERO_TABS = [
+  { key: 'infra', icon: 'server', label: 'Infrastructure' },
+  { key: 'databases', icon: 'database', label: 'Databases' },
+  { key: 'cloud', icon: 'cloud', label: 'Cloud' },
+  { key: 'stack', icon: 'bolt', label: 'Modern Stack' },
+]
+
+const HERO_TECHS = ['AWS', 'Microsoft Azure', 'Google Cloud', 'Oracle Cloud', 'Linux', 'Node.js']
 
 const INFRA_TIERS = [
   {
@@ -158,6 +166,17 @@ function ITServices() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const [activeHeroTab, setActiveHeroTab] = useState('infra')
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveHeroTab((current) => {
+        const i = HERO_TABS.findIndex((t) => t.key === current)
+        return HERO_TABS[(i + 1) % HERO_TABS.length].key
+      })
+    }, 4000)
+    return () => clearInterval(id)
+  }, [])
+
   const [activeSaaS, setActiveSaaS] = useState(0)
   const [billingCycle, setBillingCycle] = useState('annual') // 'monthly' or 'annual'
 
@@ -186,6 +205,72 @@ function ITServices() {
         setStatus('error')
       }
     })
+  }
+
+  // Hero tab dashboard mockups — one per HERO_TABS entry, each illustrating
+  // what that capability actually looks like day to day.
+  function renderHeroDash() {
+    switch (activeHeroTab) {
+      case 'infra':
+        return (
+          <div className="itsvc-dash-card">
+            <h3 className="itsvc-dash-title">Infrastructure Setup</h3>
+            <div className="itsvc-progress-track"><div className="itsvc-progress-fill" style={{ width: '40%' }}></div></div>
+            <div className="itsvc-step-list">
+              <div className="itsvc-step-item">
+                <span className="itsvc-step-dot done"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                Provision servers
+              </div>
+              <div className="itsvc-step-item">
+                <span className="itsvc-step-dot done"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                Configure network
+              </div>
+              <div className="itsvc-step-item"><span className="itsvc-step-dot active"></span>Harden security</div>
+              <div className="itsvc-step-item muted"><span className="itsvc-step-dot pending"></span>Go live</div>
+            </div>
+          </div>
+        )
+      case 'databases':
+        return (
+          <div className="itsvc-dash-card">
+            <h3 className="itsvc-dash-title">Database Health</h3>
+            <div className="itsvc-metric-grid">
+              <div className="itsvc-metric-box"><div className="itsvc-metric-label">Uptime</div><div className="itsvc-metric-value">99.98%</div></div>
+              <div className="itsvc-metric-box"><div className="itsvc-metric-label">Replication Lag</div><div className="itsvc-metric-value">0.2s</div></div>
+              <div className="itsvc-metric-box"><div className="itsvc-metric-label">Backups</div><div className="itsvc-metric-value">Daily</div></div>
+              <div className="itsvc-metric-box"><div className="itsvc-metric-label">Query P95</div><div className="itsvc-metric-value">12ms</div></div>
+            </div>
+          </div>
+        )
+      case 'cloud':
+        return (
+          <div className="itsvc-dash-card">
+            <h3 className="itsvc-dash-title">Cloud Migration</h3>
+            <div className="itsvc-success-row">
+              <span className="itsvc-success-circle"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+              <div>
+                <div className="itsvc-success-title">Migration complete</div>
+                <p className="itsvc-success-sub">Zero-downtime cutover</p>
+              </div>
+            </div>
+          </div>
+        )
+      case 'stack':
+        return (
+          <div className="itsvc-dash-card">
+            <h3 className="itsvc-dash-title">Deployment Checklist</h3>
+            <div className="itsvc-check-list">
+              <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>CI/CD pipeline configured</div>
+              <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>SSL certificates issued</div>
+              <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>Monitoring enabled</div>
+              <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>Rollback plan ready</div>
+            </div>
+            <span className="itsvc-dash-cta">Ship It</span>
+          </div>
+        )
+      default:
+        return null
+    }
   }
 
   // Helper to render SaaS dashboard mockup dynamically
@@ -412,51 +497,48 @@ function ITServices() {
       </header>
 
       <section className="itsvc-hero">
-        <BoomerangVideoBg src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260715_090628_7052d8a6-a094-4341-a4a2-ad58493a67a9.mp4" />
-        <div className="itsvc-hero-scrim"></div>
+        <div className="itsvc-hero-inner">
+          <div className="itsvc-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+            <span>Enterprise-grade infrastructure & SaaS</span>
+          </div>
 
-        <div className="itsvc-hero-copy">
-          <h1 className="itsvc-h1 animate-fade-rise">Build infrastructure<br />that lasts.</h1>
-          <p className="itsvc-subcopy animate-fade-rise-delay">
+          <h1 className="itsvc-h1">
+            Run your business on
+            <span className="itsvc-h1-accent">infrastructure that just works.</span>
+          </h1>
+
+          <p className="itsvc-subcopy">
             IT infrastructure and SaaS platforms for growing businesses — managed end to end across servers, cloud,
             and the software your team runs on every day.
           </p>
-          <div className="itsvc-hero-cta-row animate-fade-rise-delay-2">
-            <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
-            <a href="#capabilities" className="itsvc-cta-secondary">See Capabilities</a>
+
+          <a href="#contact" className="itsvc-cta-btn">Get a Quote</a>
+
+          <div className="itsvc-tabbar">
+            {HERO_TABS.map((tab) => (
+              <button
+                key={tab.key}
+                type="button"
+                className={`itsvc-tab-btn${activeHeroTab === tab.key ? ' active' : ''}`}
+                onClick={() => setActiveHeroTab(tab.key)}
+              >
+                <svg viewBox="0 0 24 24">{ICONS[tab.icon]}</svg>
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="itsvc-panel-outer">
-          <div className="itsvc-panel">
-            <div className="itsvc-panel-row1">
-              <div>
-                <span className="itsvc-microlabel">WHAT DO WE DO?</span>
-                <h2 className="itsvc-panel-title">Infrastructure that<br className="itsvc-br-sm" /> keeps running.</h2>
-              </div>
-              <p className="itsvc-panel-body">
-                IT infrastructure and SaaS built for compliance-heavy operations. Systems that stay online, plug into
-                what you already run, and hand off cleanly to your own team.
-              </p>
-            </div>
+        <div className="itsvc-dash-shell">
+          <div className="itsvc-dash-grid"></div>
+          {renderHeroDash()}
+        </div>
 
-            <div className="itsvc-hairline"></div>
-
-            <div className="itsvc-feature-rows">
-              <a href="#capabilities" className="itsvc-feature-row">
-                <span><span className="itsvc-feature-num">01</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Managed</span></span>
-                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </a>
-              <a href="#technologies" className="itsvc-feature-row">
-                <span><span className="itsvc-feature-num">02</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Connected</span></span>
-                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </a>
-              <a href="#pricing" className="itsvc-feature-row">
-                <span><span className="itsvc-feature-num">03</span><span className="itsvc-feature-slash">/</span><span className="itsvc-feature-label">Compliant</span></span>
-                <svg viewBox="0 0 24 24" className="itsvc-feature-arrow"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </a>
-            </div>
-          </div>
+        <div className="itsvc-hero-techs">
+          {HERO_TECHS.map((tech) => (
+            <span className="itsvc-hero-tech" key={tech}>{tech}</span>
+          ))}
         </div>
       </section>
 
