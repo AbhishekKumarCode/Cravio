@@ -21,10 +21,10 @@ const ICONS = {
 }
 
 const CAPABILITY_GROUPS = [
-  { icon: 'server', title: 'Infrastructure & Automation', desc: 'ERP/SaaS (on-premises), IT automation, IT helpdesk, assets management, automatic inventory, and IT security.' },
-  { icon: 'database', title: 'Systems & Databases', desc: 'Linux support (Red Hat, Ubuntu, Fedora) plus Oracle Database, SAP HANA, MySQL, and MongoDB.' },
-  { icon: 'cloud', title: 'Cloud & Collaboration', desc: 'OwnCloud, NextCloud, Seafile; AWS/Azure/Google/Oracle Cloud support; compute within your budget; mail migration (Zoho, Google, O365).' },
-  { icon: 'bolt', title: 'Modern Stack', desc: 'AWS, Node.js, WhatsApp API integration, and SSL/web security, layered onto whatever you already run.' },
+  { icon: 'server', title: 'Infrastructure & Automation', desc: 'ERP/SaaS (on-premises), IT automation, IT helpdesk, assets management, automatic inventory, and IT security.', tags: ['ERP / SaaS', 'Helpdesk', 'Asset Mgmt'] },
+  { icon: 'database', title: 'Systems & Databases', desc: 'Linux support (Red Hat, Ubuntu, Fedora) plus Oracle Database, SAP HANA, MySQL, and MongoDB.', tags: ['Linux', 'Oracle DB', 'MongoDB'] },
+  { icon: 'cloud', title: 'Cloud & Collaboration', desc: 'OwnCloud, NextCloud, Seafile; AWS/Azure/Google/Oracle Cloud support; compute within your budget; mail migration (Zoho, Google, O365).', tags: ['AWS / Azure / GCP', 'NextCloud', 'Mail Migration'] },
+  { icon: 'bolt', title: 'Modern Stack', desc: 'AWS, Node.js, WhatsApp API integration, and SSL/web security, layered onto whatever you already run.', tags: ['Node.js', 'WhatsApp API', 'SSL'] },
 ]
 
 const HERO_TABS = [
@@ -562,15 +562,20 @@ function ITServices() {
           </div>
           <div className="services-grid-container">
             {CAPABILITY_GROUPS.map((group, i) => (
-              <div className="service-tile" key={group.title}>
-                <div className="service-tile-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 25 }}>
+              <div className="service-tile itsvc-capability-tile" key={group.title}>
+                <div className="service-tile-top itsvc-capability-top">
                   <div className="service-icon-wrapper">
-                    <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, stroke: 'currentColor', strokeWidth: 2, fill: 'none' }}>{ICONS[group.icon]}</svg>
+                    <svg viewBox="0 0 24 24" className="itsvc-capability-icon">{ICONS[group.icon]}</svg>
                   </div>
                   <div className="service-watermark">0{i + 1}</div>
                 </div>
-                <h3 className="service-tile-name" style={{ fontSize: 20, fontWeight: 700, marginBottom: 12, color: 'var(--text-primary)' }}>{group.title}</h3>
-                <p className="service-tile-desc" style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{group.desc}</p>
+                <h3 className="service-tile-name itsvc-capability-title">{group.title}</h3>
+                <p className="service-tile-desc itsvc-capability-desc">{group.desc}</p>
+                <div className="itsvc-capability-tags">
+                  {group.tags.map((tag) => (
+                    <span className="itsvc-capability-tag" key={tag}>{tag}</span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

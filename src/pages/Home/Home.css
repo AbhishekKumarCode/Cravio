@@ -347,6 +347,17 @@
       box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.3);
     }
 
+    /* Below this width the nav-right column isn't wide enough for a
+       nowrap CTA pill *and* the 44px hamburger side by side -- the CTA
+       just overflowed the header. Same CTA is already duplicated inside
+       the mobile drawer (mobile-menu-cta), so nothing is lost. */
+    @media (max-width: 560px) {
+      .page-home .nav-cta-btn,
+      .page-home .nav-cta-glass {
+        display: none;
+      }
+    }
+
     /* Nav CTA — liquid-glass pill while the header floats transparently over
        the hero video, switching to a solid accent pill once scrolled (a
        translucent white chip would lose contrast against the site's own

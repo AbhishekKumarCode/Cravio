@@ -1501,9 +1501,13 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 40px;
   max-width: 1160px;
   margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .itsvc-hero-split { gap: 56px; }
 }
 
 @media (min-width: 1024px) {
@@ -1557,15 +1561,15 @@
 .itsvc-h1 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 40px;
-  line-height: 1.08;
+  /* clamp instead of fixed breakpoint jumps -- scales smoothly across every
+     phone width instead of snapping at 640/768px, and stays small enough on
+     narrow screens (min 32px) that the accent line doesn't wrap to 3 lines. */
+  font-size: clamp(32px, 9vw, 68px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: #191919;
   margin: 0 0 20px;
 }
-
-@media (min-width: 640px) { .itsvc-h1 { font-size: 54px; } }
-@media (min-width: 768px) { .itsvc-h1 { font-size: 68px; } }
 
 .itsvc-h1 .itsvc-h1-accent {
   display: block;
@@ -1613,9 +1617,10 @@
 
 .itsvc-hero-stats {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 16px 28px;
   margin-bottom: 40px;
 }
 
@@ -1686,8 +1691,8 @@
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  height: 380px;
-  border-radius: 24px;
+  height: 320px;
+  border-radius: 20px;
   overflow: hidden;
   background:
     radial-gradient(ellipse 60% 50% at 25% 15%, rgba(99, 102, 241, 0.35) 0%, transparent 60%),
@@ -1745,6 +1750,19 @@
 
 @media (prefers-reduced-motion: reduce) {
   .itsvc-dash-live-dot { animation: none; }
+}
+
+/* Tighter rhythm on small phones -- the desktop spacing (28px badge margin,
+   44px CTA margin, 40px tab margin) adds up to a very long scroll before
+   any real content shows up on a 375px-wide screen. */
+@media (max-width: 480px) {
+  .itsvc-hero { padding: 48px 16px 0; }
+  .itsvc-badge { margin-bottom: 20px; padding: 6px 14px 6px 9px; }
+  .itsvc-badge span { font-size: 12px; }
+  .page-itservices .itsvc-cta-btn { margin-bottom: 28px; padding: 13px 28px; }
+  .itsvc-hero-stats { margin-bottom: 28px; gap: 12px 22px; }
+  .itsvc-tabbar { margin-bottom: 28px; }
+  .itsvc-hero-techs { margin-top: 28px; padding-bottom: 40px; gap: 20px 26px; }
 }
 
 .itsvc-dash-card {
@@ -1866,4 +1884,63 @@
 .page-itservices .itservices-console,
 .page-itservices .sla-box {
   transition: box-shadow 0.25s ease;
+}
+
+/* ==========================================================================
+   CAPABILITIES CARDS -- moved out of inline styles, and given a scannable
+   tag row so each card carries more than a headline + one paragraph on
+   both mobile (single column, still needs texture) and desktop (4-up grid).
+   ========================================================================== */
+.itsvc-capability-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.itsvc-capability-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.itsvc-capability-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.itsvc-capability-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.itsvc-capability-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.itsvc-capability-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  background-color: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), 0.15);
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .itsvc-capability-tile {
+    padding: 26px 22px;
+  }
 }

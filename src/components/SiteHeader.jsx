@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const DEFAULT_LINKS = [
@@ -11,6 +12,7 @@ const DEFAULT_LINKS = [
 function SiteHeader({ links = DEFAULT_LINKS }) {
   const navLinks = links.filter((link) => !link.accent)
   const ctaLink = links.find((link) => link.accent)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <header className="header">
@@ -27,7 +29,34 @@ function SiteHeader({ links = DEFAULT_LINKS }) {
 
         <div className="nav-right">
           {ctaLink && <a href={ctaLink.href} className="nav-cta-btn">{ctaLink.label}</a>}
+          <button
+            type="button"
+            className={`mobile-menu-btn${menuOpen ? ' active' : ''}`}
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </div>
+
+      <div className={`mobile-menu-overlay${menuOpen ? ' active' : ''}`}>
+        <nav className="mobile-nav">
+          <ul className="mobile-menu-list">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="mobile-menu-item" onClick={() => setMenuOpen(false)}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+          {ctaLink && (
+            <a href={ctaLink.href} className="btn-primary mobile-menu-cta" onClick={() => setMenuOpen(false)}>
+              {ctaLink.label}
+            </a>
+          )}
+        </nav>
       </div>
     </header>
   )
