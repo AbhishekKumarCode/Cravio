@@ -1436,8 +1436,11 @@
 .itsvc-hero {
   position: relative;
   /* SiteHeader is a normal in-flow bar (not a floating overlay), so the hero
-     only needs its own breathing room, not extra space to clear a fixed nav. */
-  padding: 64px 24px 0;
+     only needs its own breathing room, not extra space to clear a fixed nav.
+     No horizontal padding here -- .itsvc-hero-split below carries it, sized
+     to match .container exactly so the hero's left/right edges line up with
+     every section below it instead of sitting ~20px off. */
+  padding: 64px 0 0;
   background-color: #ffffff;
   color: #191919;
   text-align: center;
@@ -1540,12 +1543,25 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  max-width: 1160px;
+  /* Matches .container's box model exactly (max-width:1200px, padding:0
+     40px -> 1120px effective content width) instead of its own unrelated
+     1160px -- that mismatch was why the hero's edges sat ~20px off from
+     every section below it. */
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 @media (min-width: 640px) {
   .itsvc-hero-split { gap: 56px; }
+}
+
+/* .container switches from 20px to 40px padding at exactly this breakpoint
+   (max-width:768px elsewhere in Home.css) -- matched here so the hero and
+   every section below share the same edges at every viewport width, not
+   just above/below 640px. */
+@media (min-width: 769px) {
+  .itsvc-hero-split { padding: 0 40px; }
 }
 
 @media (min-width: 1024px) {
@@ -1794,7 +1810,7 @@
    44px CTA margin, 40px tab margin) adds up to a very long scroll before
    any real content shows up on a 375px-wide screen. */
 @media (max-width: 480px) {
-  .itsvc-hero { padding: 48px 16px 0; }
+  .itsvc-hero { padding: 48px 0 0; }
   .itsvc-badge { margin-bottom: 20px; padding: 6px 14px 6px 9px; }
   .itsvc-badge span { font-size: 12px; }
   .page-itservices .itsvc-cta-btn { margin-bottom: 28px; padding: 13px 28px; }
@@ -1871,13 +1887,17 @@
 
 .itsvc-hero-techs {
   margin: 44px auto 0;
-  padding-bottom: 56px;
+  padding: 0 20px 56px;
   max-width: 780px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 28px 36px;
+}
+
+@media (min-width: 769px) {
+  .itsvc-hero-techs { padding-left: 40px; padding-right: 40px; }
 }
 
 .itsvc-hero-tech {
