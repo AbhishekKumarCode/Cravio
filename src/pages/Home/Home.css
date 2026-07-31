@@ -810,6 +810,24 @@
     }
 
     /* ==========================================================================
+       IT / SAAS TEASER
+       ========================================================================== */
+    .page-home .itsvc-teaser-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .page-home .itsvc-teaser-text {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 20px 0 32px;
+    }
+    .page-home .itsvc-teaser-cta {
+      display: inline-block;
+    }
+
+    /* ==========================================================================
        SELECTED WORK & STITCHED 3D PERSPECTIVE DECK
        ========================================================================== */.page-home .projects-grid,
 .page-home .projects-row-1,

@@ -15,7 +15,6 @@ function SiteFooter() {
         </div>
       </div>
       <div className="container footer-legal-links">
-        <a href="/it-services">IT & SaaS Solutions</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
       </div>

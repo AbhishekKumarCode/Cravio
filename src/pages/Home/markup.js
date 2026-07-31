@@ -1388,6 +1388,19 @@ export const homeMarkup = `
       </div>
     </section>
 
+    <!-- IT / SAAS TEASER -->
+    <section class="section-spacing itsvc-teaser">
+      <div class="container itsvc-teaser-inner">
+        <span class="section-eyebrow">NEED SOMETHING ELSE?</span>
+        <h2 class="section-title">Need IT infrastructure or a SaaS platform set up?</h2>
+        <p class="itsvc-teaser-text">
+          We also handle ERP/SaaS setup, IT automation, helpdesk, databases and cloud
+          for businesses — outside of web design. Mail us and we'll take it from there.
+        </p>
+        <a href="mailto:abhishek.kumar.work8668@gmail.com?subject=IT%20Services%20Inquiry" class="nav-cta-btn itsvc-teaser-cta">Mail Us About IT Services</a>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-floating-shapes">
@@ -1408,7 +1421,6 @@ export const homeMarkup = `
         </div>
       </div>
       <div class="container footer-legal-links">
-        <a href="/it-services">IT & SaaS Solutions</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
       </div>
