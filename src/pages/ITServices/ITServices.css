@@ -1,6 +1,11 @@
 .page-home.page-itservices {
-  --accent: #6366f1;
-  --accent-rgb: 99, 102, 241;
+  /* #6366f1 only gives ~4.1:1 contrast for white text on an accent-filled
+     background (nav CTA pill, icon-chip hover) -- fails WCAG AA's 4.5:1 for
+     normal-weight text. Indigo-600 (#4f46e5) reads the same "violet" but
+     passes comfortably (~5.9:1) while everything using --accent as a plain
+     foreground color (links, borders, icons on white) stays well above 4.5:1. */
+  --accent: #4f46e5;
+  --accent-rgb: 79, 70, 229;
   --accent-2: #14b8a6;
   --accent-2-rgb: 20, 184, 166;
   --blob-gradient: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(20, 184, 166, 0.15) 50%, rgba(99, 102, 241, 0.05) 100%);
@@ -1651,7 +1656,7 @@
 .itsvc-hero-stat span {
   font-family: var(--font-body);
   font-size: 11.5px;
-  color: rgba(25, 25, 25, 0.5);
+  color: rgba(25, 25, 25, 0.68);
 }
 
 .itsvc-tabbar {
@@ -1673,7 +1678,7 @@
   font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 500;
-  color: #6b7280;
+  color: #565f6b;
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
 }
@@ -1806,7 +1811,7 @@
 
 .itsvc-step-list { display: flex; flex-direction: column; gap: 12px; }
 .itsvc-step-item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 13.5px; color: #374151; }
-.itsvc-step-item.muted { color: #9ca3af; }
+.itsvc-step-item.muted { color: #565f6b; }
 .itsvc-step-dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .itsvc-step-dot.done { background: #191919; }
 .itsvc-step-dot.done svg { width: 10px; height: 10px; stroke: #ffffff; stroke-width: 3; fill: none; }
@@ -1815,14 +1820,14 @@
 
 .itsvc-metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .itsvc-metric-box { background: #f9fafb; border-radius: 10px; padding: 14px; }
-.itsvc-metric-label { font-family: var(--font-body); font-size: 10.5px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.itsvc-metric-label { font-family: var(--font-body); font-size: 10.5px; color: #565f6b; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
 .itsvc-metric-value { font-family: var(--font-body); font-size: 19px; font-weight: 600; color: #191919; }
 
 .itsvc-success-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .itsvc-success-circle { width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .itsvc-success-circle svg { width: 24px; height: 24px; stroke: #16a34a; stroke-width: 3; fill: none; }
 .itsvc-success-title { font-family: var(--font-body); font-size: 17px; font-weight: 700; color: #191919; }
-.itsvc-success-sub { font-family: var(--font-body); font-size: 13px; color: #6b7280; margin: 0; }
+.itsvc-success-sub { font-family: var(--font-body); font-size: 13px; color: #565f6b; margin: 0; }
 
 .itsvc-check-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
 .itsvc-check-item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 13.5px; color: #374151; }
@@ -1856,7 +1861,7 @@
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
-  color: rgba(25, 25, 25, 0.45);
+  color: rgba(25, 25, 25, 0.62);
   letter-spacing: 0.01em;
 }
 

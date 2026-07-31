@@ -256,7 +256,7 @@ function ITServices() {
       case 'infra':
         return (
           <div className="itsvc-dash-card">
-            <h3 className="itsvc-dash-title">Infrastructure Setup</h3>
+            <p className="itsvc-dash-title">Infrastructure Setup</p>
             <div className="itsvc-progress-track"><div className="itsvc-progress-fill" style={{ width: '40%' }}></div></div>
             <div className="itsvc-step-list">
               <div className="itsvc-step-item">
@@ -275,7 +275,7 @@ function ITServices() {
       case 'databases':
         return (
           <div className="itsvc-dash-card">
-            <h3 className="itsvc-dash-title">Database Health</h3>
+            <p className="itsvc-dash-title">Database Health</p>
             <div className="itsvc-metric-grid">
               <div className="itsvc-metric-box"><div className="itsvc-metric-label">Uptime</div><div className="itsvc-metric-value">99.98%</div></div>
               <div className="itsvc-metric-box"><div className="itsvc-metric-label">Replication Lag</div><div className="itsvc-metric-value">0.2s</div></div>
@@ -287,7 +287,7 @@ function ITServices() {
       case 'cloud':
         return (
           <div className="itsvc-dash-card">
-            <h3 className="itsvc-dash-title">Cloud Migration</h3>
+            <p className="itsvc-dash-title">Cloud Migration</p>
             <div className="itsvc-success-row">
               <span className="itsvc-success-circle"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
               <div>
@@ -300,7 +300,7 @@ function ITServices() {
       case 'stack':
         return (
           <div className="itsvc-dash-card">
-            <h3 className="itsvc-dash-title">Deployment Checklist</h3>
+            <p className="itsvc-dash-title">Deployment Checklist</p>
             <div className="itsvc-check-list">
               <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>CI/CD pipeline configured</div>
               <div className="itsvc-check-item"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>SSL certificates issued</div>
