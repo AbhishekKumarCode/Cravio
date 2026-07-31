@@ -372,6 +372,7 @@
       padding: 9px 20px;
       border-radius: 999px;
       overflow: hidden;
+      white-space: nowrap;
       transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
     }
 
