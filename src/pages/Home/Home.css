@@ -426,7 +426,23 @@
     }.page-home .mobile-menu-btn:hover {
       border-color: var(--text-primary);
       background-color: var(--border-color);
-    }.page-home .mobile-menu-btn span {
+    }
+
+    /* nav-menu hides below 900px (see .nav-menu media query) -- the
+       hamburger needs to hide in the complementary range (>=901px) or both
+       the full link row and the circular toggle show at once. This had no
+       such rule at all, so it was showing on every page at every width. */
+    @media (min-width: 901px) {
+      .page-home .mobile-menu-btn {
+        display: none;
+      }
+
+      .page-home .nav-menu {
+        gap: 35px;
+      }
+    }
+
+    .page-home .mobile-menu-btn span {
       display: block;
       width: 16px;
       height: 1.5px;

@@ -65,9 +65,23 @@
 
 /* Fixed 3-col grids leave an orphaned card in the last row for 4- or
    5-item lists. auto-fit collapses unused tracks so the last row's cards
-   stretch to fill the width instead of leaving empty grid space. */
+   stretch to fill the width instead of leaving empty grid space.
+
+   Home's version of this container is a "seamless hairline grid" -- 1px
+   gap, its own rounded border + overflow:hidden, background-color peeking
+   through the 1px gaps as dividers -- built for tiles with no border/fill
+   of their own. Capabilities cards each have their own visible border and
+   20px radius, so that 1px gap read as a structural glitch (adjacent card
+   borders nearly touching) and the container's 16px-radius clip cut off
+   the corner tiles' own 20px-radius corners. Overridden to a real gap with
+   no competing container chrome, matching how the cards are actually styled. */
 .page-home.page-itservices .services-grid-container {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 /* saas-pricing-grid has 5 cards -- at a 260px min-width, a ~1200px
@@ -1827,6 +1841,10 @@
   padding: 26px;
   width: 320px;
   max-width: calc(100vw - 64px);
+  /* The 4 tab mockups have different content heights (a 2-line success
+     message vs a 4-item checklist) -- without a floor, the dash-shell
+     around it visibly resizes every time the tab auto-cycles. */
+  min-height: 285px;
   text-align: left;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
   animation: itsvc-dash-in 0.4s ease-out both;
@@ -1975,6 +1993,7 @@
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+  flex-grow: 1;
 }
 
 .itsvc-capability-tags {
@@ -1982,6 +2001,15 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 18px;
+}
+
+/* 4 cards in a row, descriptions of different lengths -- without stretching
+   to a shared height and growing the description to fill the gap, the tag
+   rows land at different heights across the row instead of lining up. */
+.page-home.page-itservices .itsvc-capability-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .itsvc-capability-tag {
