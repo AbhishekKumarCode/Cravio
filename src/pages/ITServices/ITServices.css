@@ -10,6 +10,11 @@
   --accent-2-rgb: 20, 184, 166;
   --blob-gradient: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(20, 184, 166, 0.15) 50%, rgba(99, 102, 241, 0.05) 100%);
   background-color: var(--bg);
+  /* Safety net: nothing on this page had overflow-x:hidden at the root, so
+     any single element even a few px too wide (a grid track, a fixed-width
+     card) made the *whole page* scroll sideways instead of just clipping
+     that one element. */
+  overflow-x: hidden;
 }
 
 [data-theme="dark"] .page-home.page-itservices {
@@ -61,9 +66,15 @@
 /* Fixed 3-col grids leave an orphaned card in the last row for 4- or
    5-item lists. auto-fit collapses unused tracks so the last row's cards
    stretch to fill the width instead of leaving empty grid space. */
-.page-home.page-itservices .services-grid-container,
-.page-home.page-itservices .saas-pricing-grid {
+.page-home.page-itservices .services-grid-container {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* saas-pricing-grid has 5 cards -- at a 260px min-width, a ~1200px
+   container fits 4 per row and strands the 5th alone with a huge gap next
+   to it. A wider min-width caps it at 3 columns, giving an even 3+2 split. */
+.page-home.page-itservices .saas-pricing-grid {
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 }
 
 .page-home.page-itservices .pricing-card.compact {
@@ -374,16 +385,19 @@
   color: #d1d5db;
 }
 
-/* Glassmorphism Capabilities Card */
+/* Capabilities card -- no background fill (requested): the tile's
+   near-white surface color sitting on the section's own near-white/light
+   background made cards look washed-out and ghosted rather than defined.
+   Border alone gives the card shape without the fill. */
 .page-itservices .service-tile {
-  background: var(--surface);
+  background: none;
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 40px 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  transition: transform 0.3s ease, border-color 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-align: left;
 }
 
