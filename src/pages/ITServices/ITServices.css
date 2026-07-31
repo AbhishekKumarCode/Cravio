@@ -26,7 +26,7 @@
 }
 
 /* Faint grid background style for SaaS look */
-.page-itservices section {
+.page-home.page-itservices section {
   position: relative;
   background-image: 
     linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
@@ -34,7 +34,7 @@
   background-size: 50px 50px;
 }
 
-[data-theme="dark"] .page-itservices section {
+[data-theme="dark"] .page-home.page-itservices section {
   background-image:
     linear-gradient(to right, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(129, 140, 248, 0.02) 1px, transparent 1px);
@@ -45,7 +45,7 @@
    theme background, which is a hard white->near-black cut in dark mode.
    Fading the first ~220px from white into the page's own --bg smooths that
    seam without touching the panel's own fixed-white styling. */
-.page-itservices #capabilities {
+.page-home.page-itservices #capabilities {
   background-image:
     linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
@@ -54,7 +54,7 @@
   background-repeat: repeat, repeat, no-repeat;
 }
 
-[data-theme="dark"] .page-itservices #capabilities {
+[data-theme="dark"] .page-home.page-itservices #capabilities {
   background-image:
     linear-gradient(to right, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(129, 140, 248, 0.02) 1px, transparent 1px),
@@ -156,7 +156,7 @@
   }
 }
 
-.page-itservices .hero-ctas {
+.page-home.page-itservices .hero-ctas {
   display: flex;
   gap: 15px;
   align-items: center;
@@ -164,7 +164,7 @@
   margin-bottom: 30px;
 }
 
-.page-itservices .announcement-pill {
+.page-home.page-itservices .announcement-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -388,8 +388,17 @@
 /* Capabilities card -- no background fill (requested): the tile's
    near-white surface color sitting on the section's own near-white/light
    background made cards look washed-out and ghosted rather than defined.
-   Border alone gives the card shape without the fill. */
-.page-itservices .service-tile {
+   Border alone gives the card shape without the fill.
+
+   IMPORTANT: Home.css's shared rule is `.page-home .service-tile` (2
+   classes). A selector of equal specificity here was a coin flip -- with
+   routes now code-split (React.lazy), Home.css and ITServices.css load as
+   separate chunks whose relative <link> order at runtime isn't guaranteed,
+   so the tie could resolve either way depending on load order, not
+   anything in this file. Every override below is prefixed with
+   `.page-home.page-itservices` (3 classes) specifically so it always wins
+   regardless of load order. */
+.page-home.page-itservices .service-tile {
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 20px;
@@ -401,19 +410,19 @@
   text-align: left;
 }
 
-[data-theme="dark"] .page-itservices .service-tile {
+[data-theme="dark"] .page-home.page-itservices .service-tile {
   background: rgba(19, 25, 32, 0.6);
   backdrop-filter: blur(12px);
   border-color: rgba(255, 255, 255, 0.05);
 }
 
-.page-itservices .service-tile:hover {
+.page-home.page-itservices .service-tile:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(var(--accent-rgb), 0.08);
   border-color: rgba(var(--accent-rgb), 0.3);
 }
 
-.page-itservices .service-watermark {
+.page-home.page-itservices .service-watermark {
   font-family: var(--font-mono);
   font-size: 52px;
   font-weight: 800;
@@ -423,14 +432,14 @@
   line-height: 1;
 }
 
-.page-itservices .service-tile:hover .service-watermark {
+.page-home.page-itservices .service-tile:hover .service-watermark {
   color: var(--accent);
   opacity: 0.15;
   transform: scale(1.1);
 }
 
 /* Tech Tag Custom Hover Styles */
-.page-itservices .tech-badge-grid {
+.page-home.page-itservices .tech-badge-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -438,7 +447,7 @@
   margin-top: 30px;
 }
 
-.page-itservices .tech-badge {
+.page-home.page-itservices .tech-badge {
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 500;
@@ -452,57 +461,57 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-[data-theme="dark"] .page-itservices .tech-badge {
+[data-theme="dark"] .page-home.page-itservices .tech-badge {
   background-color: rgba(19, 25, 32, 0.5);
   border-color: rgba(255, 255, 255, 0.06);
 }
 
-.page-itservices .tech-badge:hover {
+.page-home.page-itservices .tech-badge:hover {
   transform: translateY(-2px);
   color: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-.page-itservices .tech-badge.tech-linux:hover {
+.page-home.page-itservices .tech-badge.tech-linux:hover {
   background: #e62117; border-color: #e62117; box-shadow: 0 5px 15px rgba(230, 33, 23, 0.3);
 }
-.page-itservices .tech-badge.tech-vmware:hover {
+.page-home.page-itservices .tech-badge.tech-vmware:hover {
   background: #607078; border-color: #607078; box-shadow: 0 5px 15px rgba(96, 112, 120, 0.3);
 }
-.page-itservices .tech-badge.tech-aws:hover {
+.page-home.page-itservices .tech-badge.tech-aws:hover {
   background: #ff9900; border-color: #ff9900; box-shadow: 0 5px 15px rgba(255, 153, 0, 0.3);
 }
-.page-itservices .tech-badge.tech-azure:hover {
+.page-home.page-itservices .tech-badge.tech-azure:hover {
   background: #0078d4; border-color: #0078d4; box-shadow: 0 5px 15px rgba(0, 120, 212, 0.3);
 }
-.page-itservices .tech-badge.tech-gcp:hover {
+.page-home.page-itservices .tech-badge.tech-gcp:hover {
   background: #4285f4; border-color: #4285f4; box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
 }
-.page-itservices .tech-badge.tech-oracle:hover {
+.page-home.page-itservices .tech-badge.tech-oracle:hover {
   background: #f80000; border-color: #f80000; box-shadow: 0 5px 15px rgba(248, 0, 0, 0.3);
 }
-.page-itservices .tech-badge.tech-open-source:hover {
+.page-home.page-itservices .tech-badge.tech-open-source:hover {
   background: #0082c9; border-color: #0082c9; box-shadow: 0 5px 15px rgba(0, 130, 201, 0.3);
 }
-.page-itservices .tech-badge.tech-microsoft-365:hover {
+.page-home.page-itservices .tech-badge.tech-microsoft-365:hover {
   background: #ea3e23; border-color: #ea3e23; box-shadow: 0 5px 15px rgba(234, 62, 35, 0.3);
 }
-.page-itservices .tech-badge.tech-sap:hover {
+.page-home.page-itservices .tech-badge.tech-sap:hover {
   background: #008fd3; border-color: #008fd3; box-shadow: 0 5px 15px rgba(0, 143, 211, 0.3);
 }
-.page-itservices .tech-badge.tech-databases:hover {
+.page-home.page-itservices .tech-badge.tech-databases:hover {
   background: #0064a5; border-color: #0064a5; box-shadow: 0 5px 15px rgba(0, 100, 165, 0.3);
 }
-.page-itservices .tech-badge.tech-node:hover {
+.page-home.page-itservices .tech-badge.tech-node:hover {
   background: #339933; border-color: #339933; box-shadow: 0 5px 15px rgba(51, 153, 51, 0.3);
 }
-.page-itservices .tech-badge.tech-whatsapp:hover {
+.page-home.page-itservices .tech-badge.tech-whatsapp:hover {
   background: #25d366; border-color: #25d366; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
 }
-.page-itservices .tech-badge.tech-security:hover {
+.page-home.page-itservices .tech-badge.tech-security:hover {
   background: #10b981; border-color: #10b981; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
-.page-itservices .tech-badge.tech-ai:hover {
+.page-home.page-itservices .tech-badge.tech-ai:hover {
   background: #8b5cf6; border-color: #8b5cf6; box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
 }
 
@@ -1000,12 +1009,12 @@
 }
 
 /* How We Work Timeline */
-.page-itservices .process-flow-container {
+.page-home.page-itservices .process-flow-container {
   position: relative;
   margin-top: 50px;
 }
 
-.page-itservices .process-connecting-line {
+.page-home.page-itservices .process-connecting-line {
   position: absolute;
   top: 25px;
   left: 50px;
@@ -1027,7 +1036,7 @@
   }
 }
 
-.page-itservices .process-steps {
+.page-home.page-itservices .process-steps {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
@@ -1042,7 +1051,7 @@
   }
 }
 
-.page-itservices .process-step {
+.page-home.page-itservices .process-step {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1058,7 +1067,7 @@
   }
 }
 
-.page-itservices .process-circle {
+.page-home.page-itservices .process-circle {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1077,13 +1086,13 @@
   flex-shrink: 0;
 }
 
-[data-theme="dark"] .page-itservices .process-circle {
+[data-theme="dark"] .page-home.page-itservices .process-circle {
   background: #111827;
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.page-itservices .process-step:hover .process-circle,
-.page-itservices .process-step.active .process-circle {
+.page-home.page-itservices .process-step:hover .process-circle,
+.page-home.page-itservices .process-step.active .process-circle {
   border-color: var(--accent);
   color: #fff;
   background: var(--accent);
@@ -1091,19 +1100,19 @@
   transform: scale(1.08);
 }
 
-.page-itservices .process-step-text {
+.page-home.page-itservices .process-step-text {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.page-itservices .process-step-title {
+.page-home.page-itservices .process-step-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.page-itservices .process-step-desc {
+.page-home.page-itservices .process-step-desc {
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
@@ -1184,14 +1193,14 @@
 }
 
 /* Pricing Grid Enhancements */
-.page-itservices .pricing-grid {
+.page-home.page-itservices .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   align-items: stretch;
 }
 
-.page-itservices .pricing-card {
+.page-home.page-itservices .pricing-card {
   position: relative;
   background: var(--surface);
   border: 1px solid var(--border-color);
@@ -1204,27 +1213,27 @@
   text-align: left;
 }
 
-[data-theme="dark"] .page-itservices .pricing-card {
+[data-theme="dark"] .page-home.page-itservices .pricing-card {
   background: rgba(19, 25, 32, 0.6);
   backdrop-filter: blur(12px);
 }
 
-.page-itservices .pricing-card:hover {
+.page-home.page-itservices .pricing-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
 }
 
-[data-theme="dark"] .page-itservices .pricing-card:hover {
+[data-theme="dark"] .page-home.page-itservices .pricing-card:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   border-color: rgba(var(--accent-rgb), 0.2);
 }
 
-.page-itservices .pricing-card.featured {
+.page-home.page-itservices .pricing-card.featured {
   border-color: var(--accent);
   box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.08);
 }
 
-[data-theme="dark"] .page-itservices .pricing-card.featured {
+[data-theme="dark"] .page-home.page-itservices .pricing-card.featured {
   box-shadow: 0 15px 35px rgba(var(--accent-rgb), 0.2);
 }
 
@@ -1244,7 +1253,7 @@
   letter-spacing: 0.05em;
 }
 
-.page-itservices .pricing-header {
+.page-home.page-itservices .pricing-header {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
   display: flex;
@@ -1252,7 +1261,7 @@
   gap: 10px;
 }
 
-.page-itservices .pricing-tier {
+.page-home.page-itservices .pricing-tier {
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 700;
@@ -1261,7 +1270,7 @@
   letter-spacing: 0.05em;
 }
 
-.page-itservices .pricing-price {
+.page-home.page-itservices .pricing-price {
   font-family: var(--font-body);
   font-size: 32px;
   font-weight: 800;
@@ -1269,7 +1278,7 @@
   line-height: 1.1;
 }
 
-.page-itservices .pricing-desc {
+.page-home.page-itservices .pricing-desc {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
@@ -1277,7 +1286,7 @@
   margin-bottom: 0;
 }
 
-.page-itservices .pricing-features {
+.page-home.page-itservices .pricing-features {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1287,7 +1296,7 @@
   flex-grow: 1;
 }
 
-.page-itservices .pricing-feature-item {
+.page-home.page-itservices .pricing-feature-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -1296,7 +1305,7 @@
   line-height: 1.4;
 }
 
-.page-itservices .pricing-feature-item svg {
+.page-home.page-itservices .pricing-feature-item svg {
   width: 16px;
   height: 16px;
   stroke: var(--accent-2);
@@ -1306,7 +1315,7 @@
   flex-shrink: 0;
 }
 
-.page-itservices .pricing-btn {
+.page-home.page-itservices .pricing-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1321,28 +1330,28 @@
   transition: all 0.3s ease;
 }
 
-[data-theme="dark"] .page-itservices .pricing-btn {
+[data-theme="dark"] .page-home.page-itservices .pricing-btn {
   background: rgba(255, 255, 255, 0.03);
 }
 
-.page-itservices .pricing-btn:hover {
+.page-home.page-itservices .pricing-btn:hover {
   background: var(--border-color-thick);
 }
 
-.page-itservices .pricing-card.featured .pricing-btn {
+.page-home.page-itservices .pricing-card.featured .pricing-btn {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff !important;
   border: none;
   box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.2);
 }
 
-.page-itservices .pricing-card.featured .pricing-btn:hover {
+.page-home.page-itservices .pricing-card.featured .pricing-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.3);
 }
 
 /* Contact Grid Redesign */
-.page-itservices .contact-container {
+.page-home.page-itservices .contact-container {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 60px;
@@ -1624,7 +1633,7 @@
    than a single .itsvc-cta-btn class, so the white text was silently
    overridden back to the hero's black -- black text on a black button.
    Scoping under .page-itservices raises the specificity above that reset. */
-.page-itservices .itsvc-cta-btn {
+.page-home.page-itservices .itsvc-cta-btn {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 12px;
@@ -1640,7 +1649,7 @@
   margin-bottom: 44px;
 }
 
-.page-itservices .itsvc-cta-btn:hover {
+.page-home.page-itservices .itsvc-cta-btn:hover {
   background-color: #333333;
 }
 
@@ -1885,33 +1894,33 @@
    the ask for it to feel like a distinct, elevated product tier. Scoped to
    .page-itservices so Home (which uses the same shared classes) is untouched.
    ========================================================================== */
-.page-itservices .section-title {
+.page-home.page-itservices .section-title {
   font-size: clamp(30px, 4vw, 44px);
   font-weight: 500;
   letter-spacing: -0.01em;
 }
 
-.page-itservices .service-tile {
+.page-home.page-itservices .service-tile {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.page-itservices .service-tile:hover {
+.page-home.page-itservices .service-tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 40px rgba(var(--accent-rgb), 0.12);
 }
 
-.page-itservices .pricing-card {
+.page-home.page-itservices .pricing-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.page-itservices .pricing-card:hover {
+.page-home.page-itservices .pricing-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 48px rgba(var(--accent-rgb), 0.14);
 }
 
-.page-itservices .saas-showcase-container,
-.page-itservices .itservices-console,
-.page-itservices .sla-box {
+.page-home.page-itservices .saas-showcase-container,
+.page-home.page-itservices .itservices-console,
+.page-home.page-itservices .sla-box {
   transition: box-shadow 0.25s ease;
 }
 
