@@ -268,6 +268,36 @@ export function initHomeBehavior() {
   };
   window.addEventListener('scroll', handleScrollProgress);
 
+  // 6a. HERO VIDEO — CONDITIONAL/DEFERRED LOAD. This is a 13.5MB file; on a
+  // narrow viewport, a metered/slow connection, or reduced-motion it's skipped
+  // entirely (the existing glowing-blob gradient behind it is the fallback
+  // look for that case). Otherwise it's still not fetched until after the
+  // browser's next idle point, so it never competes with first paint / the
+  // JS bundle for bandwidth.
+  const heroVideoEl = document.getElementById('hero-bg-video');
+  if (heroVideoEl) {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isNarrowViewport = window.matchMedia('(max-width: 768px)').matches;
+    const isSlowConnection = connection && (connection.saveData || /2g/.test(connection.effectiveType || ''));
+
+    if (!prefersReducedMotion && !isNarrowViewport && !isSlowConnection) {
+      const loadHeroVideo = () => {
+        const source = document.createElement('source');
+        source.src = '/videos/hero-video.mp4';
+        source.type = 'video/mp4';
+        heroVideoEl.appendChild(source);
+        heroVideoEl.load();
+        heroVideoEl.play().catch(() => {});
+      };
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadHeroVideo, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', () => setTimeout(loadHeroVideo, 300));
+      }
+    }
+  }
+
   // 6b. HERO VIDEO PARALLAX — video scrolls slower than the page and fades
   // out as the hero leaves the viewport, instead of scrolling 1:1 with the content.
   const heroVideo = document.getElementById('hero-bg-video');

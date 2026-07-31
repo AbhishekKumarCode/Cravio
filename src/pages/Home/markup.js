@@ -67,9 +67,12 @@ export const homeMarkup = `
       <div class="glowing-blob"></div>
     </div>
 
-    <!-- Fullscreen looping background video -->
-    <video class="hero-bg-video" id="hero-bg-video" autoplay loop muted playsinline>
-      <source src="/videos/hero-video.mp4" type="video/mp4">
+    <!-- Fullscreen looping background video — no src in the initial HTML on
+         purpose. This is a 13.5MB file; behavior.js decides whether/when to
+         load it (skipped entirely on narrow viewports, slow connections, or
+         reduced-motion, and deferred past first paint otherwise) instead of
+         the browser eagerly fetching it as part of the critical page load. -->
+    <video class="hero-bg-video" id="hero-bg-video" loop muted playsinline preload="none">
     </video>
     <div class="hero-video-scrim"></div>
 
