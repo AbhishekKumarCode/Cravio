@@ -1241,7 +1241,7 @@ export const homeMarkup = `
           <!-- Item 1 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              How long does a typical project take?
+              <h3 class="faq-question">How long does a typical project take?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1254,7 +1254,7 @@ export const homeMarkup = `
           <!-- Item 2 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              Do we own the website code after launch?
+              <h3 class="faq-question">Do we own the website code after launch?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1267,7 +1267,7 @@ export const homeMarkup = `
           <!-- Item 3 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              Will our website work on mobile devices?
+              <h3 class="faq-question">Will our website work on mobile devices?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1280,7 +1280,7 @@ export const homeMarkup = `
           <!-- Item 4 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              Do you offer post-launch support and hosting setups?
+              <h3 class="faq-question">Do you offer post-launch support and hosting setups?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1293,7 +1293,7 @@ export const homeMarkup = `
           <!-- Item 5 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              How does pricing work, and what's included?
+              <h3 class="faq-question">How does pricing work, and what's included?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1306,7 +1306,7 @@ export const homeMarkup = `
           <!-- Item 6 -->
           <div class="faq-item">
             <button class="faq-trigger">
-              What if I need changes after the site is live?
+              <h3 class="faq-question">What if I need changes after the site is live?</h3>
               <svg viewBox="0 0 24 24">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>

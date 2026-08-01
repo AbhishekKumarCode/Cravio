@@ -3178,6 +3178,10 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+    }.page-home .faq-question {
+      margin: 0;
+      font: inherit;
+      color: inherit;
     }.page-home .faq-trigger svg {
       width: 16px;
       height: 16px;
