@@ -36,7 +36,7 @@ const FAQ_ITEMS = [
 function Home() {
   usePageMeta({
     title: 'Craivo — High-Conversion Web Design Agency',
-    description: 'High-conversion websites built by one designer-developer — fast delivery, full code ownership, no bloated agency overhead. See our work.',
+    description: 'Craivo is a web design and development agency delivering high-conversion websites — fast delivery, full code ownership, no bloated overhead. See our work.',
     path: '/',
   })
 
