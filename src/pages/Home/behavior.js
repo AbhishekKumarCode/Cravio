@@ -278,7 +278,11 @@ export function initHomeBehavior() {
   if (heroVideoEl) {
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isNarrowViewport = window.matchMedia('(max-width: 768px)').matches;
+    // 900px matches the site's actual mobile breakpoint (nav-menu/hamburger
+    // switch here too) -- this used to be 768px, a stray threshold that let
+    // wider phones/phablets/small tablets (769-900px) get the mobile nav but
+    // still fetch the video.
+    const isNarrowViewport = window.matchMedia('(max-width: 900px)').matches;
     const isSlowConnection = connection && (connection.saveData || /2g/.test(connection.effectiveType || ''));
 
     if (!prefersReducedMotion && !isNarrowViewport && !isSlowConnection) {
