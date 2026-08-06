@@ -616,6 +616,23 @@
       pointer-events: none;
     }
 
+    /* Below the same breakpoint behavior.js uses to skip fetching the video
+       entirely, the hero had no background of its own -- just the scrim's
+       translucent dark gradient over the page's light default --bg showing
+       through, plus a small blurred blob. Give it a real solid color instead
+       of that implied/washed-out look, and drop the now-pointless video/blob
+       layers rather than paint elements that will never show anything. */
+    @media (max-width: 900px) {
+      .page-home .hero.hero-has-video {
+        background-color: #071018;
+      }
+      .page-home .hero-bg-video,
+      .page-home .hero-video-scrim,
+      .page-home .glowing-blob-container {
+        display: none;
+      }
+    }
+
     @keyframes fade-rise {
       from {
         opacity: 0;
