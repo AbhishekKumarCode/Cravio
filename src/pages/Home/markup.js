@@ -804,7 +804,7 @@ export const homeMarkup = `
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Everything your business needs to make a strong first impression
+                1 custom-designed page that makes a strong first impression
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
@@ -843,7 +843,7 @@ export const homeMarkup = `
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Everything your business needs to build trust and generate enquiries
+                5-7 custom-designed pages that build trust and generate enquiries
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
@@ -867,7 +867,7 @@ export const homeMarkup = `
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                A full month by your side after launch, at no extra cost
+                1 month of post-launch support, by your side at no extra cost
               </li>
             </ul>
             <a href="#contact" class="pricing-btn">Book Free Strategy Call</a>
@@ -1459,7 +1459,7 @@ export const homeMarkup = `
         <p class="pricing-modal-desc">A single, high-impact page built to earn trust and turn visitors into
           enquiries from day one.</p>
         <ul class="pricing-modal-features">
-          <li>Everything your business needs to make a strong first impression</li>
+          <li>1 custom-designed page that makes a strong first impression</li>
           <li>Built-in enquiry form so leads reach you directly</li>
           <li>Live and working within days, not weeks</li>
           <li>Structured to be found on Google from day one</li>
@@ -1474,11 +1474,11 @@ export const homeMarkup = `
         <p class="pricing-modal-desc">A complete, custom-built website designed around how your business actually
           grows.</p>
         <ul class="pricing-modal-features">
-          <li>Everything your business needs to build trust and generate enquiries</li>
+          <li>5-7 custom-designed pages that build trust and generate enquiries</li>
           <li>Fast, custom-built website designed around your business, not a template</li>
           <li>Looks great on every phone and device</li>
           <li>Built to rank and be found by the right customers</li>
-          <li>A full month by your side after launch, at no extra cost</li>
+          <li>1 month of post-launch support, by your side at no extra cost</li>
         </ul>
       </div>
 
