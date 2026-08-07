@@ -785,140 +785,143 @@ export const homeMarkup = `
       <div class="container">
         <div class="section-header-block reveal-element">
           <span class="section-eyebrow">PRICING</span>
-          <h2 class="section-title">Transparent Pricing Built for ROI</h2>
+          <h2 class="section-title">Invest in a Website That Pays You Back</h2>
         </div>
 
         <div class="pricing-grid reveal-element">
-          <!-- Starter — Landing Page -->
+          <!-- Launch -->
           <div class="pricing-card">
             <div class="pricing-header">
-              <span class="pricing-tier">Starter — Landing Page</span>
+              <span class="pricing-tier">Launch</span>
               <h3 class="pricing-price" role="button" tabindex="0" aria-haspopup="dialog"
                 aria-label="View full pricing breakdown for all plans">₹8,999–₹15,000</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc pricing-desc">A single page done right — for businesses that
-              need a clean, working presence online fast.</p>
+            <p class="service-tile-desc pricing-desc">A single, high-impact page built to earn trust and
+              turn visitors into enquiries from day one.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                1 Responsive Page
+                Everything your business needs to make a strong first impression
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Contact Form Integration
+                Built-in enquiry form so leads reach you directly
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Fully Deployed & Live
+                Live and working within days, not weeks
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Basic On-Page SEO
+                Structured to be found on Google from day one
               </li>
             </ul>
-            <a href="#contact" class="pricing-btn">Get Started</a>
+            <a href="#contact" class="pricing-btn">Get My Website</a>
           </div>
 
-          <!-- Business Site -->
+          <!-- Growth -->
           <div class="pricing-card featured">
             <div class="pricing-header">
-              <span class="pricing-tier">Business Site</span>
+              <span class="pricing-tier">Growth</span>
               <h3 class="pricing-price" role="button" tabindex="0" aria-haspopup="dialog"
                 aria-label="View full pricing breakdown for all plans">₹15,000–₹35,000</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc pricing-desc">For growing brands that need a proper multi-page
-              site built around their actual business, not a template.</p>
+            <p class="service-tile-desc pricing-desc">A complete, custom-built website designed around how
+              your business actually grows.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                5–7 Custom-Designed Pages
+                Everything your business needs to build trust and generate enquiries
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                WordPress or React Build
+                Fast, custom-built website designed around your business, not a template
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Mobile-Optimized Layouts
+                Looks great on every phone and device
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Standard SEO Setup
+                Built to rank and be found by the right customers
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                1 Month Post-Launch Support
+                A full month by your side after launch, at no extra cost
               </li>
             </ul>
-            <a href="#contact" class="pricing-btn">Book a Call</a>
+            <a href="#contact" class="pricing-btn">Book Free Strategy Call</a>
           </div>
 
-          <!-- Advanced / AI-Integrated Site -->
+          <!-- Scale AI -->
           <div class="pricing-card">
             <div class="pricing-header">
-              <span class="pricing-tier">Advanced / AI-Integrated Site</span>
+              <span class="pricing-tier">Scale AI</span>
               <h3 class="pricing-price" role="button" tabindex="0" aria-haspopup="dialog"
                 aria-label="View full pricing breakdown for all plans">₹35,000–₹80,000+</h3>
               <span class="pricing-price-hint">View full breakdown</span>
             </div>
-            <p class="service-tile-desc pricing-desc">Full-stack builds with real backend logic and AI
-              features baked in, for businesses ready to scale past a brochure site.</p>
+            <p class="service-tile-desc pricing-desc">For businesses ready to move past a brochure site
+              into a platform that works for them, not the other way around.</p>
             <ul class="pricing-features">
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Full-Stack Custom Build
+                A fully custom platform built around your operations, not a page count
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                AI-Powered Features
+                AI-powered features that save your team hours every week
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Backend & Database Integration
+                Secure booking, customer management &amp; business workflows, built in
               </li>
               <li class="pricing-feature-item">
                 <svg viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Priority Support Through Launch
+                Direct, priority access to us through launch and beyond
               </li>
             </ul>
-            <a href="#contact" class="pricing-btn">Start Project</a>
+            <a href="#contact" class="pricing-btn">Request Proposal</a>
           </div>
         </div>
 
-        <!-- Maintenance Retainer -->
+        <p class="pricing-hesitation-note reveal-element">Not sure which package is right for your business?
+          Book a free strategy call and we'll recommend the best solution — no pressure, no obligation.</p>
+
+        <!-- Care Plan -->
         <div class="pricing-retainer-bar reveal-element">
           <div class="pricing-retainer-text">
-            <span class="pricing-retainer-label">Maintenance Retainer</span>
-            <p>Ongoing updates, monitoring, and small changes after launch — for clients who'd rather not think about
-              their site again.</p>
+            <span class="pricing-retainer-label">Ongoing Care Plan</span>
+            <p>A website is never "done" at launch — it's an asset that needs looking after, or it quietly starts
+              costing you customers instead of winning them. We keep yours updated, monitored, and improving.</p>
           </div>
           <div class="pricing-retainer-price">₹3,000–₹8,000<span>/month</span></div>
         </div>
@@ -937,17 +940,17 @@ export const homeMarkup = `
               </thead>
               <tbody>
                 <tr>
-                  <td>Landing Page</td>
+                  <td>Launch</td>
                   <td>$300–$600</td>
                   <td>₹25,000–₹50,000</td>
                 </tr>
                 <tr>
-                  <td>Business Site</td>
+                  <td>Growth</td>
                   <td>$700–$1,500</td>
                   <td>₹58,000–₹1,25,000</td>
                 </tr>
                 <tr>
-                  <td>Advanced / AI</td>
+                  <td>Scale AI</td>
                   <td>$1,500–$3,500+</td>
                   <td>₹1,25,000–₹2,90,000+</td>
                 </tr>
@@ -1368,9 +1371,9 @@ export const homeMarkup = `
                   <label for="form-budget">Budget Tier</label>
                   <select id="form-budget" name="budget" class="form-input" required>
                     <option value="" disabled selected>Select budget</option>
-                    <option value="starter">Starter — Landing Page (₹8,999–₹15,000)</option>
-                    <option value="business">Business Site (₹15,000–₹35,000)</option>
-                    <option value="advanced">Advanced / AI-Integrated (₹35,000–₹80,000+)</option>
+                    <option value="starter">Launch (₹8,999–₹15,000)</option>
+                    <option value="business">Growth (₹15,000–₹35,000)</option>
+                    <option value="advanced">Scale AI (₹35,000–₹80,000+)</option>
                   </select>
                 </div>
               </div>
@@ -1450,57 +1453,57 @@ export const homeMarkup = `
 
       <div class="pricing-modal-row">
         <div class="pricing-modal-row-head">
-          <span class="pricing-modal-tier">Starter — Landing Page</span>
+          <span class="pricing-modal-tier">Launch</span>
           <span class="pricing-modal-price">₹8,999–₹15,000</span>
         </div>
-        <p class="pricing-modal-desc">A single page done right — for businesses that need a clean, working presence
-          online fast.</p>
+        <p class="pricing-modal-desc">A single, high-impact page built to earn trust and turn visitors into
+          enquiries from day one.</p>
         <ul class="pricing-modal-features">
-          <li>1 Responsive Page</li>
-          <li>Contact Form Integration</li>
-          <li>Fully Deployed &amp; Live</li>
-          <li>Basic On-Page SEO</li>
+          <li>Everything your business needs to make a strong first impression</li>
+          <li>Built-in enquiry form so leads reach you directly</li>
+          <li>Live and working within days, not weeks</li>
+          <li>Structured to be found on Google from day one</li>
         </ul>
       </div>
 
       <div class="pricing-modal-row">
         <div class="pricing-modal-row-head">
-          <span class="pricing-modal-tier">Business Site</span>
+          <span class="pricing-modal-tier">Growth</span>
           <span class="pricing-modal-price">₹15,000–₹35,000</span>
         </div>
-        <p class="pricing-modal-desc">For growing brands that need a proper multi-page site built around their
-          actual business, not a template.</p>
+        <p class="pricing-modal-desc">A complete, custom-built website designed around how your business actually
+          grows.</p>
         <ul class="pricing-modal-features">
-          <li>5–7 Custom-Designed Pages</li>
-          <li>WordPress or React Build</li>
-          <li>Mobile-Optimized Layouts</li>
-          <li>Standard SEO Setup</li>
-          <li>1 Month Post-Launch Support</li>
+          <li>Everything your business needs to build trust and generate enquiries</li>
+          <li>Fast, custom-built website designed around your business, not a template</li>
+          <li>Looks great on every phone and device</li>
+          <li>Built to rank and be found by the right customers</li>
+          <li>A full month by your side after launch, at no extra cost</li>
         </ul>
       </div>
 
       <div class="pricing-modal-row">
         <div class="pricing-modal-row-head">
-          <span class="pricing-modal-tier">Advanced / AI-Integrated Site</span>
+          <span class="pricing-modal-tier">Scale AI</span>
           <span class="pricing-modal-price">₹35,000–₹80,000+</span>
         </div>
-        <p class="pricing-modal-desc">Full-stack builds with real backend logic and AI features baked in, for
-          businesses ready to scale past a brochure site.</p>
+        <p class="pricing-modal-desc">For businesses ready to move past a brochure site into a platform that works
+          for them, not the other way around.</p>
         <ul class="pricing-modal-features">
-          <li>Full-Stack Custom Build</li>
-          <li>AI-Powered Features</li>
-          <li>Backend &amp; Database Integration</li>
-          <li>Priority Support Through Launch</li>
+          <li>A fully custom platform built around your operations, not a page count</li>
+          <li>AI-powered features that save your team hours every week</li>
+          <li>Secure booking, customer management &amp; business workflows, built in</li>
+          <li>Direct, priority access to us through launch and beyond</li>
         </ul>
       </div>
 
       <div class="pricing-modal-row">
         <div class="pricing-modal-row-head">
-          <span class="pricing-modal-tier">Maintenance Retainer</span>
+          <span class="pricing-modal-tier">Ongoing Care Plan</span>
           <span class="pricing-modal-price">₹3,000–₹8,000/mo</span>
         </div>
-        <p class="pricing-modal-desc">Ongoing updates, monitoring, and small changes after launch — for clients
-          who'd rather not think about their site again.</p>
+        <p class="pricing-modal-desc">A website is never "done" at launch — we keep yours updated, monitored, and
+          improving so it never quietly starts costing you customers.</p>
       </div>
 
       <button class="btn-close-showcase" id="close-pricing-modal-btn" style="margin-top: 24px;">Close</button>

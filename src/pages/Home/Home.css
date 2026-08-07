@@ -3071,6 +3071,13 @@
       box-shadow: 0 4px 12px rgba(20, 20, 20, 0.12), 0 24px 60px rgba(20, 20, 20, 0.16);
     }
 
+    .page-home .pricing-hesitation-note {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-top: 28px;
+    }
+
     /* Maintenance retainer — a slim highlighted strip rather than a full
        card, since it's a recurring add-on, not a one-time build tier. */.page-home .pricing-retainer-bar {
       margin-top: 24px;
